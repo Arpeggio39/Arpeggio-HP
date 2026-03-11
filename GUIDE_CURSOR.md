@@ -44,10 +44,10 @@ npm -v
 
 ![Cursor](./readme_pictures/cursor_top.png)
 
-上らへんにあるURL欄に
+上らへんに出てくるURL入力欄に
 
 ```HPのリンク
-https://github.com/Nis450/ArpeggioHP.git 
+https://github.com/Arpeggio39/Arpeggio-HP.git
 ```
 
 をペーストしてEnter。
