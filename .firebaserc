@@ -1,0 +1,17 @@
+{
+  "projects": {
+    "default": "arpeggio393"
+  },
+  "targets": {
+    "arpeggio393": {
+      "hosting": {
+        "arpeggio393": [
+          "arpeggio393"
+        ]
+      }
+    }
+  },
+  "etags": {},
+  "dataconnectEmulatorConfig": {}
+}
+

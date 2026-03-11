@@ -1,0 +1,35 @@
+name: Deploy to Hosting Main
+on:
+  push:
+    branches:
+      - main
+jobs:
+  build_and_deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '20'
+      - name: Install dependencies for Homepage
+        run: npm ci
+
+      - name: Build project
+        run: npm run build
+      - name: Setup Firebase CLI
+        run: npm install -g firebase-tools@latest
+  
+      - uses: FirebaseExtended/action-hosting-deploy@v0
+        with:
+          repoToken: ${{ secrets.GITHUB_TOKEN }}
+          firebaseServiceAccount: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_ARPEGGIO393 }}
+          channelId: live
+          target: arpeggio393
+          projectId: arpeggio393
+
+      - name: Send Webhook Notification
+        run: |
+          curl -X POST ${{ secrets.WEBHOOK_URL }} \
+          -H "Content-Type: application/json" \
+          -d '{"content": "ホームページが更新されました！"}'

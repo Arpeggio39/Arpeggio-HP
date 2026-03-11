@@ -1,0 +1,115 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  font-family: 'Arial', sans-serif;
+}
+
+/* globals.css に追加 */
+@keyframes shine {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.3;
+  }
+}
+
+.shine-star {
+  background: radial-gradient(circle, white, transparent);
+  animation: shine 2s infinite;
+}
+
+/* 上下ピクピク（fixed 中央寄せと併用する場合は translateX(-50%) をキーフレームに含める） */
+@keyframes bounceJitter {
+  0%, 100% {
+    transform: translate(-50%, 0);
+  }
+  50% {
+    transform: translate(-50%, -6px);
+  }
+}
+
+.animate-bounceJitter {
+  animation: bounceJitter 0.6s ease-in-out infinite;
+}
+
+@keyframes fadeIn {
+  to {
+    opacity: 1;
+  }
+}
+
+/* View Transition: 5周年ページへ「バーが拡大」して遷移 */
+@keyframes view-transition-expand-bar {
+  from {
+    clip-path: inset(0 50% 0 50%);
+  }
+  to {
+    clip-path: inset(0 0 0 0);
+  }
+}
+
+@keyframes view-transition-fade-out {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+/* 5周年ボタン押下時のみ: バーが拡大して遷移先が現れる */
+html.view-transition-to-5th ::view-transition-old(root) {
+  animation: view-transition-fade-out 0.35s ease-out forwards;
+}
+
+html.view-transition-to-5th ::view-transition-new(root) {
+  animation: view-transition-expand-bar 0.5s cubic-bezier(0.32, 0.72, 0, 1) forwards;
+}
+
+/* 5th PROJECT リスト→詳細: 同じ view-transition-name で共有要素がモーフする（デフォルトのアニメーションを使用） */
+@media (prefers-reduced-motion: reduce) {
+  ::view-transition-group(*),
+  ::view-transition-old(*),
+  ::view-transition-new(*) {
+    animation: none !important;
+  }
+}
+
+/* グローバル初回ロードインジケーター（本当の初回のみ表示） */
+.global-loading-indicator {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  z-index: 9999;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(99, 102, 241, 0.8) 50%,
+    transparent 100%
+  );
+  background-size: 200% 100%;
+  animation: global-loading-shimmer 0.8s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .global-loading-indicator {
+    animation: none;
+    opacity: 0.6;
+  }
+}
+
+@keyframes global-loading-shimmer {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+

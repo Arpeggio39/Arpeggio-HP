@@ -1,0 +1,147 @@
+name: OSV-Scanner Security Check
+
+on:
+  pull_request:
+    branches:
+      - main
+      - develop
+permissions:
+  # Required to upload SARIF file to CodeQL
+  actions: read
+  # Require writing security events to upload SARIF file to security tab
+  security-events: write
+  # Required to fetch code (actions/checkout)
+  contents: read
+
+jobs:
+  # 依存関係のスキャン
+  scan:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Install OSV-Scanner
+        run: |
+          curl -sSL https://github.com/google/osv-scanner/releases/latest/download/osv-scanner_linux_amd64 -o osv-scanner
+          chmod +x osv-scanner
+          sudo mv osv-scanner /usr/local/bin/
+
+      - name: Run OSV-Scanner
+        run: |
+          osv-scanner --lockfile=package-lock.json --format=json --output=scan-results.json || true
+        continue-on-error: true
+
+      - name: Upload scan results
+        uses: actions/upload-artifact@v4
+        with:
+          name: scan-results
+          path: scan-results.json
+          if-no-files-found: ignore
+
+  # 結果をDiscordに送信
+  send-discord-notification:
+    runs-on: ubuntu-latest
+    needs: [scan]
+    if: always()
+    steps:
+      - name: Download scan results
+        uses: actions/download-artifact@v4
+        with:
+          path: scan-results
+
+      - name: Install jq
+        run: sudo apt-get update && sudo apt-get install -y jq
+
+      - name: Process results and send to Discord
+        env:
+          WEBHOOK_URL: ${{ secrets.WEBHOOK_URL }}
+        run: |
+          #!/bin/bash
+          
+          json_file="scan-results/scan-results/scan-results.json"
+          
+          # 結果を集計
+          total_vulns=0
+          critical_count=0
+          high_count=0
+          medium_count=0
+          low_count=0
+          
+          # 一時ファイルを作成してフィールドデータを保存
+          echo "[]" > /tmp/fields.json
+          
+          if [ -f "$json_file" ]; then
+            # 脆弱性の数をカウント
+            vuln_count=$(jq '.results[].packages[].vulnerabilities | length' "$json_file" 2>/dev/null | awk '{s+=$1} END {print s}' || echo "0")
+            total_vulns=$((total_vulns + vuln_count))
+            
+            # CVSS別カウント
+            if [ "$vuln_count" -gt 0 ]; then
+              while IFS= read -r severity; do
+                case "$severity" in
+                  CRITICAL) critical_count=$((critical_count + 1)) ;;
+                  HIGH) high_count=$((high_count + 1)) ;;
+                  MEDIUM) medium_count=$((medium_count + 1)) ;;
+                  LOW) low_count=$((low_count + 1)) ;;
+                esac
+              done < <(jq -r '.results[]?.packages[]?.vulnerabilities[]? | 
+                select(.database_specific.severity != null) | 
+                .database_specific.severity' "$json_file" 2>/dev/null)
+              
+              # 脆弱性があるパッケージのリストを作成
+              packages_list=$(jq -r '
+                [.results[]?.packages[]? | 
+                select(.vulnerabilities | length > 0) | 
+                .package.name] | 
+                map("`" + . + "`") | 
+                join(" ")
+              ' "$json_file" 2>/dev/null)
+              
+              # jqを使って安全にフィールドを追加
+              if [ -n "$packages_list" ]; then
+                jq --arg value "$packages_list" \
+                  '. += [{"name": "影響を受けるパッケージ", "value": $value, "inline": false}]' \
+                  /tmp/fields.json > /tmp/fields_tmp.json && mv /tmp/fields_tmp.json /tmp/fields.json
+              fi
+            fi
+          fi
+          
+          # メッセージの色と内容を決定
+          if [ $total_vulns -eq 0 ]; then
+            color=3066993
+            title="✅ 脆弱性なし"
+            
+            # jqを使って安全にJSONを生成
+            payload=$(jq -n \
+              --arg title "$title" \
+              --argjson color "$color" \
+              '{embeds: [{title: $title, color: $color}]}')
+          else
+            if [ $critical_count -gt 0 ] || [ $high_count -gt 0 ]; then
+              color=15158332
+              title="🚨 脆弱性検出: ${total_vulns}件"
+              stats="Critical: ${critical_count} | High: ${high_count} | Medium: ${medium_count} | Low: ${low_count}"
+            else
+              color=16776960
+              title="⚠️ 脆弱性検出: ${total_vulns}件"
+              stats="Medium: ${medium_count} | Low: ${low_count}"
+            fi
+            
+            # jqを使って安全にJSONを生成
+            payload=$(jq -n \
+              --arg title "$title" \
+              --arg description "$stats" \
+              --argjson fields "$(cat /tmp/fields.json)" \
+              --argjson color "$color" \
+              '{embeds: [{title: $title, description: $description, fields: $fields, color: $color}]}')
+          fi
+          
+          # Discordに送信（WEBHOOK_URLが設定されている場合のみ）
+          if [ -n "$WEBHOOK_URL" ]; then
+            curl -X POST \
+              -H "Content-Type: application/json" \
+              -d "$payload" \
+              "$WEBHOOK_URL" || true
+          fi
+
