@@ -185,7 +185,7 @@ export default function Home() {
                             href="/maita/5th/"
                             onClick={handle5thClick}
                             aria-label="5周年ページを開く"
-                            className="transform transition-transform duration-500 hover:scale-105 active:scale-95 bg-gradient-to-r from-mikuBlue to-maitaPurple text-white text-xs md:text-xl md:text-2xl font-bold px-6 md:px-20 py-2 rounded-full shadow-md flex items-center justify-center space-x-3 md:space-x-4 w-72 md:w-auto"
+                            className="transform transition-transform duration-500 hover:scale-105 active:scale-95 bg-gradient-to-r from-mikuBlue to-maitaPurple !text-white text-xs md:text-xl md:text-2xl font-bold px-6 md:px-20 py-2 rounded-full shadow-md flex items-center justify-center space-x-3 md:space-x-4 w-72 md:w-auto"
                         >
                             <Image
                                 src="/maita/5thIcon.png"
@@ -207,22 +207,24 @@ export default function Home() {
             </div>
 
             <div className="bg-black text-white flex flex-col items-center justify-center pb-10 tracking-wider pt-10">
-                <div className='mx-5 flex flex-row items-start justify-start custom:justify-center'>
-                    <Image
-                        src="/maita/Normal/portrait.png"
-                        alt="マイタの立ち絵"
-                        width={384}
-                        height={216}
-                        className="w-24 md:w-auto custom:w-[30%] h-auto flex-shrink-0 self-center"
-                    />
-                    <div className='flex flex-col ml-3 sm:ml-4 custom:ml-0'>
-                        <p className="text-sm sm:text-xs md:text-xl leading-relaxed sm:leading-tight md:leading-normal mt-0 custom:mt-5">
+                <div className="w-[91.6667%] max-w-4xl flex flex-col md:flex-row items-center md:items-start justify-center gap-6 md:gap-8">
+                    <div className="w-full md:w-1/2 max-w-[220px] sm:max-w-[260px] md:max-w-none flex-shrink-0">
+                        <Image
+                            src="/maita/Normal/portrait.png"
+                            alt="マイタの立ち絵"
+                            width={384}
+                            height={216}
+                            className="w-full h-auto"
+                        />
+                    </div>
+                    <div className="w-full md:w-1/2 text-left">
+                        <p className="text-sm sm:text-xs md:text-lg leading-relaxed sm:leading-tight md:leading-relaxed mt-0 custom:mt-5">
                             音楽が好きで元気いっぱいのArpeggioメンバー。
                         </p>
-                        <p className="text-sm sm:text-xs md:text-xl leading-relaxed sm:leading-tight md:leading-normal mt-2 sm:mt-2 md:mt-5">
+                        <p className="text-sm sm:text-xs md:text-lg leading-relaxed sm:leading-tight md:leading-relaxed mt-2 sm:mt-2 md:mt-5">
                             Arpeggioのことが大好きで髪色は班の数に合わせている。
                         </p>
-                        <ul className="text-sm sm:text-xs md:text-xl leading-relaxed sm:leading-tight md:leading-normal mt-2 sm:mt-2 md:mt-5 space-y-1 sm:space-y-1 md:space-y-3">
+                        <ul className="text-sm sm:text-xs md:text-lg leading-relaxed sm:leading-tight md:leading-relaxed mt-2 sm:mt-2 md:mt-5 space-y-1 sm:space-y-1 md:space-y-3">
                             {maitaProfileList.map((profile, index) => (
                                 <li key={index}>{profile.label}: {profile.value}</li> // 'key' ではなく 'label' に修正
                             ))}
@@ -255,7 +257,7 @@ export default function Home() {
                         href="https://utau2008.xrea.jp/"
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="mt-4 bg-maitaPurple text-white font-semibold text-base sm:text-lg px-5 sm:px-6 py-2.5 sm:py-3 rounded-lg transition-colors hover:bg-maitaHoverPurple inline-block"
+                        className="mt-4 bg-maitaPurple !text-white font-semibold text-base sm:text-lg px-5 sm:px-6 py-2.5 sm:py-3 rounded-lg transition-colors hover:bg-maitaHoverPurple inline-block"
                     >
                         UTAU公式サイトを見る
                     </a>
@@ -306,7 +308,7 @@ export default function Home() {
                                 onClick={handleFinalDownload}
                                 disabled={!isAgreed}
                                 className={`px-4 py-2 rounded-lg transition-colors ${isAgreed
-                                    ? "bg-maitaPurple text-white hover:bg-mikuPink"
+                                    ? "bg-maitaPurple !text-white hover:bg-mikuPink"
                                     : "bg-gray-300 text-gray-500 cursor-not-allowed"
                                     }`}
                             >

@@ -53,14 +53,13 @@ export const MaitaIntroductionRow: React.FC<MaitaProps> = ({ maita, onDownload }
                     {/* 3視点ポーズの画像 */}
                     {designImageExists && (
                         <div className="relative w-1/2 md:w-auto md:flex-shrink-0">
-                            <div className="absolute inset-0 rounded-xl transform rotate-20"></div>
                             <Image
                                 onClick={toggleModal}
                                 src={`/maita/${maita.id}/design.png`}
                                 alt={`${maita.name}の3視点ポーズ`}
                                 width={320}
                                 height={210}
-                                className={`relative object-cover transform rounded-2xl rotate-20 border-4 shadow-2xl hover:scale-105 cursor-pointer w-full md:w-80 md:max-w-none h-auto ${borderColor}`}
+                                className={`relative object-cover rounded-2xl border-4 shadow-2xl hover:scale-105 cursor-pointer w-full md:w-80 md:max-w-none h-auto ${borderColor}`}
                                 style={{ transition: 'all 0.5s ease-in-out' }}
                             />
                         </div>
@@ -84,7 +83,7 @@ export const MaitaIntroductionRow: React.FC<MaitaProps> = ({ maita, onDownload }
                         {maita.demoSong && (
                             <button
                                 onClick={() => window.open(maita.demoSong, '_blank')}
-                                className="text-sm md:text-base font-bold sm:px-4 md:px-6 py-2.5 sm:py-3 rounded-lg border-2 border-transparent bg-maitaPurple text-white hover:bg-maitaHoverPurple flex items-center justify-center flex-1"
+                                className="text-sm md:text-base font-bold sm:px-4 md:px-6 py-2.5 sm:py-3 rounded-lg border-2 border-transparent bg-maitaPurple !text-white hover:bg-maitaHoverPurple flex items-center justify-center flex-1"
                             >
                                 <MusicNoteIcon className="w-5 h-5 sm:w-2 sm:h-2 md:w-5 md:h-5 mr-1.5 sm:mr-2" />
                                 デモソング
@@ -94,7 +93,7 @@ export const MaitaIntroductionRow: React.FC<MaitaProps> = ({ maita, onDownload }
                         {maita.downloadUrl && (
                             <button
                                 onClick={() => onDownload(maita.id, maita.name, maita.description,maita.downloadUrl)}
-                                className={"text-sm md:text-base font-bold sm:px-4 md:px-6 py-2.5 sm:py-3 rounded-lg border-2 border-transparent transition-colors bg-maitaPurple text-white hover:bg-maitaHoverPurple flex items-center justify-center flex-1"}
+                                className={"text-sm md:text-base font-bold sm:px-4 md:px-6 py-2.5 sm:py-3 rounded-lg border-2 border-transparent transition-colors bg-maitaPurple !text-white hover:bg-maitaHoverPurple flex items-center justify-center flex-1"}
                             >
                                 <>
                                     <DownloadIcon className="w-5 h-5 sm:w-2 sm:h-2 md:w-5 md:h-5 mr-1.5 sm:mr-2" />
