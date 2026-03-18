@@ -3,18 +3,14 @@
 import Head from 'next/head';
 import Header from '@/components/Header';
 import Footer from '../../../components/Footer';
-import NextLink from 'next/link';
-import Link from 'next/link';
 import ViewTransitionLink from '@/components/ViewTransitionLink';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, Suspense } from 'react';
 import Image from 'next/image';
+import { useSearchParams } from 'next/navigation';
 
-type FifthAnniversaryProps = {
-    /** オーバーレイ表示時（パスが5thでないとき）は true でローディングをスキップ */
-    skipSplash?: boolean;
-};
-
-export default function FifthAnniversary({ skipSplash = false }: FifthAnniversaryProps) {
+function FifthAnniversaryContent() {
+    const searchParams = useSearchParams();
+    const skipSplash = searchParams.get('skipSplash') === '1' || searchParams.get('skipSplash') === 'true';
     const portraits = [
         '/maita/Normal/portrait.png',
         '/maita/Capella/portrait.png',
@@ -149,4 +145,16 @@ export default function FifthAnniversary({ skipSplash = false }: FifthAnniversar
             `}</style>
         </>
     );
-};
+}
+
+export default function FifthAnniversary() {
+    return (
+        <Suspense fallback={
+            <div className="bg-gradient-to-br from-pink-100 via-pink-50 to-rose-100 min-h-screen flex items-center justify-center">
+                <div className="animate-pulse text-gray-500">Loading...</div>
+            </div>
+        }>
+            <FifthAnniversaryContent />
+        </Suspense>
+    );
+}
