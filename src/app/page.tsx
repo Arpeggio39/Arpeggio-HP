@@ -6,13 +6,10 @@ import Header from '@/components/Header';
 import { groups } from '../const/group/GroupList';
 
 import Footer from '@/components/Footer';
-import AnimatedText from '@/components/AnimatedText';
-import AnimatedLogo from '@/components/AnimatedLogo';
+import Image from 'next/image';
 
 export default function Home() {
   const [scrollOpacity, setScrollOpacity] = useState(1);
-  const [showLogo, setShowLogo] = useState(false);
-  const [animationComplete, setAnimationComplete] = useState(false);
 
   useEffect(() => {
     function handleScroll() {
@@ -41,31 +38,24 @@ export default function Home() {
       <div 
         className="flex flex-col items-center justify-center py-20 min-h-screen tracking-lwidest"
       >
-          <AnimatedText
-            text="同志社大学VOCALOID研究会"
-            className="text-lg sm:text-2xl md:text-4xl text-center font-bold mt-4 text-black"
-            animationType="fadeInUp"
-            delay={0}
-            characterDelay={0.08}
-            onComplete={() => setShowLogo(true)}
-          />
-        <div className="flex items-center justify-center">
-          <AnimatedLogo
+        <div
+          className="text-lg sm:text-2xl md:text-4xl text-center font-bold mt-4 text-black opacity-0 animate-fadeInUp"
+          style={{ animationDelay: '0s', animationFillMode: 'forwards' }}
+        >
+          同志社大学VOCALOID研究会
+        </div>
+        <div
+          className="flex items-center justify-center opacity-0 animate-fadeInUp"
+          style={{ animationDelay: '0.5s', animationFillMode: 'forwards' }}
+        >
+          <Image
             src="/clearLogo.png"
             alt="Arpeggio Logo"
-            className="mr-4 mt-4"
-            show={showLogo}
-            delay={0}
-            onComplete={() => setAnimationComplete(true)}
+            width={100}
+            height={100}
+            className="mr-4 mt-4 object-contain"
           />
-          <AnimatedText
-            text="Arpeggio"
-            className="text-4xl text-center font-bold mt-4 text-black"
-            animationType="fadeInUp"
-            delay={1}
-            characterDelay={0.08}
-            onComplete={() => setShowLogo(true)}
-          />
+          <span className="text-4xl text-center font-bold mt-4 text-black">Arpeggio</span>
         </div>
         <p
           className="absolute bottom-10 text-sm sm:text-lg animate-bouncePulse text-gray-600"
@@ -101,9 +91,12 @@ export default function Home() {
             >
               <div className="p-5 pr-24 relative">
                 <h3 className="text-lg sm:text-xl md:text-2xl font-semibold">{group.name}</h3>
-                <div className="mt-2 flex items-center justify-between gap-3">
+                <div className="mt-2 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
+                  <p className="text-sm text-gray-600 min-w-0 flex-1 line-clamp-2 sm:line-clamp-none sm:hidden">
+                    {group.description}
+                  </p>
                   <div
-                    className="text-sm text-gray-600 overflow-hidden min-w-0 flex-1"
+                    className="hidden sm:block text-sm text-gray-600 overflow-hidden min-w-0 flex-1"
                     style={{
                       maskImage: 'linear-gradient(to bottom, black 0%, black 40%, transparent 100%)',
                       WebkitMaskImage: 'linear-gradient(to bottom, black 0%, black 40%, transparent 100%)',
@@ -113,7 +106,7 @@ export default function Home() {
                   </div>
                   <Link
                     href="/activity"
-                    className="text-sm sm:text-base font-semibold px-3 py-2 rounded-md bg-mikuBlue text-white hover:bg-mikuPink transition-colors duration-200 shrink-0"
+                    className="text-sm sm:text-base font-semibold px-3 py-2 rounded-md bg-mikuBlue !text-white hover:bg-mikuPink transition-colors duration-200 shrink-0 self-end sm:self-auto"
                   >
                     詳しく見る
                   </Link>
@@ -124,10 +117,44 @@ export default function Home() {
         </div>
         <a
           href="/activity"
-          className="mt-10 font-semibold text-lg sm:text-xl md:text-2xl px-6 sm:px-8 md:px-10 py-3 sm:py-4 rounded-lg transition-colors duration-200 bg-mikuBlue text-white hover:bg-mikuPink"
+          className="mt-10 font-semibold text-lg sm:text-xl md:text-2xl px-6 sm:px-8 md:px-10 py-3 sm:py-4 rounded-lg transition-colors duration-200 bg-mikuBlue !text-white hover:bg-mikuPink"
         >
           各班の活動内容を見る
         </a>
+      </div>
+
+      {/* Arpeggioのキャラクター紹介 */}
+      <div
+        className="flex flex-col items-center justify-center py-10 tracking-wider px-10"
+      >
+        <div className="max-w-5xl w-full px-6 sm:px-8 md:px-10 py-8 md:py-10">
+          <div className="flex flex-col md:flex-row items-center md:items-start gap-8 md:gap-10">
+            <div className="w-full md:w-[32%] flex justify-center">
+              <Image
+                src="/maita/Normal/portrait.png"
+                alt="琵音マイタの立ち絵"
+                width={384}
+                height={860}
+                className="w-40 sm:w-52 md:w-full h-auto object-contain"
+              />
+            </div>
+            <div className="w-full md:flex-1 text-left">
+              <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold">琵音マイタ</h2>
+              <p className="text-base sm:text-lg md:text-xl mt-5 leading-relaxed">
+                琵音マイタは、Arpeggioの創立10周年記念プロジェクトで生まれたキャラクターです。
+              </p>
+              <p className="text-base sm:text-lg md:text-xl mt-3 leading-relaxed">
+                音楽と創作が大好きな元気いっぱいのメンバーとして親しまれています。詳しいプロフィールやビジュアルは、マイタページで紹介しています。
+              </p>
+              <Link
+                href="/maita"
+                className="inline-block mt-6 font-semibold text-base sm:text-lg px-5 sm:px-6 py-3 rounded-lg transition-colors duration-200 bg-maitaPurple !text-white hover:bg-maitaHoverPurple"
+              >
+                琵音マイタをもっと見る
+              </Link>
+            </div>
+          </div>
+        </div>
       </div>
 
       {/* Arpeggioにはどんな人がいるの？？ */}
@@ -175,7 +202,7 @@ export default function Home() {
             href="https://twitter.com/arpeggio_kouhou"
             target="_blank"
             rel="noopener noreferrer"
-            className="text-lg sm:text-xl md:text-2xl px-4 sm:px-5 md:px-6 py-2 sm:py-3 rounded-lg bg-black text-white transition-colors duration-200"
+            className="text-lg sm:text-xl md:text-2xl px-4 sm:px-5 md:px-6 py-2 sm:py-3 rounded-lg bg-black !text-white transition-colors duration-200"
           >
             Xを見る
           </a>

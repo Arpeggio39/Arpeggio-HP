@@ -24,7 +24,7 @@ const Footer: React.FC<FooterProps> = ({ bgColor, textColor }) => {
                     href="https://twitter.com/arpeggio_kouhou" 
                     target="_blank" 
                     rel="noopener noreferrer"
-                    className="inline-flex items-center justify-center w-10 h-10 rounded-full bg-black hover:bg-gray-800 text-white transition-colors duration-200 cursor-pointer"
+                    className="inline-flex items-center justify-center w-10 h-10 rounded-full bg-black hover:bg-gray-800 !text-white transition-colors duration-200 cursor-pointer"
                     style={{ pointerEvents: 'auto' }}
                 >
                     <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
