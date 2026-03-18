@@ -1,19 +1,149 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
 
-body {
-  font-family: 'Arial', sans-serif;
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+  --font-sans-jp:
+    "Hiragino Maru Gothic ProN", "Hiragino Sans", "Yu Gothic", "YuGothic",
+    "Meiryo", sans-serif;
+  --font-geist-mono:
+    "SFMono-Regular", "SF Mono", "Consolas", "Liberation Mono", monospace;
 }
 
-/* globals.css に追加 */
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-sans-jp);
+  --font-mono: var(--font-geist-mono);
+}
+
+@theme {
+  /* Breakpoints (tailwind.config から移行) */
+  --breakpoint-custom: 800px;
+  --breakpoint-isPC: 800px;
+
+  /* Letter spacing */
+  --tracking-wider: 0.1em;
+  --tracking-widest: 0.2em;
+  --tracking-lwidest: 0.4em;
+
+  /* Colors */
+  --color-customBlue: #1E3A8A;
+  --color-mikuBlue: #039393;
+  --color-mikuPink: #e12885;
+  --color-mikuBlack: #373b3e;
+  --color-mikuGray: #bec8d1;
+  --color-mikuGreen: #137a7f;
+  --color-mikuCyan: #c3e5e7;
+  --color-mikuYellow: #fffeec;
+  --color-maitaHoverPurple: #9b509d;
+  --color-maitaPurple: #b960bc;
+  --color-polarisColorFirst: #41404D;
+  --color-polarisColorSecond: #A6AFBC;
+  --color-polarisColorThird: #F1F2F5;
+  --color-polarisColorFourth: #FFF0EA;
+  --color-polarisColorFifth: #F95F66;
+  --color-polarisColorSixth: #FDB571;
+  --color-polarisColorSeventh: #FFE783;
+  --color-polarisColorEighth: #CBFF81;
+  --color-polarisColorNinth: #71E2E8;
+  --color-polarisColorTenth: #5A70DA;
+  --color-polarisColorEleventh: #B571F4;
+  --color-siriusColorFirst: #5E5F5F;
+  --color-siriusColorSecond: #F9E5D2;
+  --color-siriusColorThird: #E5E6E7;
+  --color-siriusColorFourth: #D66260;
+  --color-siriusColorFifth: #D27863;
+  --color-siriusColorSixth: #FFCE84;
+  --color-siriusColorSeventh: #FFBA73;
+  --color-siriusColorEighth: #ACB29C;
+  --color-siriusColorNinth: #A5D4D8;
+  --color-siriusColorTenth: #3A60B2;
+  --color-siriusColorEleventh: #7866AC;
+  --color-capellaColorFirst: #FFA39F;
+  --color-capellaColorSecond: #9FFFFA;
+  --color-capellaColorThird: #FA3D06;
+  --color-capellaColorFourth: #89C9C9;
+  --color-capellaColorFifth: #A09F9F;
+  --color-capellaColorSixth: #C600FF;
+  --color-capellaColorSeventh: #E52BDD;
+  --color-normalColorFirst: #EF3C38;
+  --color-normalColorSecond: #FF983B;
+  --color-normalColorThird: #FFF43F;
+  --color-normalColorFourth: #44CD2B;
+  --color-normalColorFifth: #2DC4CD;
+  --color-normalColorSixth: #324B9C;
+  --color-normalColorSeventh: #9B43CD;
+
+  /* Animations */
+  --animate-fadeInUp: fadeInUp 1s ease-out;
+  --animate-fadeInDown: fadeInDown 1s ease-out;
+  --animate-slideInFromLeft: slideInFromLeft 1.2s ease-out;
+  --animate-slideInFromRight: slideInFromRight 1.2s ease-out;
+  --animate-bouncePulse: bouncePulse 1s infinite;
+  --animate-slide-loop: slide 10s linear infinite;
+
+  @keyframes fadeInUp {
+    0% { opacity: 0; transform: translateY(20px); }
+    100% { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes fadeInDown {
+    0% { opacity: 0; transform: translateY(-30px); }
+    100% { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes slideInFromLeft {
+    0% { opacity: 0; transform: translateX(-50px); }
+    100% { opacity: 1; transform: translateX(0); }
+  }
+  @keyframes slideInFromRight {
+    0% { opacity: 0; transform: translateX(50px); }
+    100% { opacity: 1; transform: translateX(0); }
+  }
+  @keyframes bouncePulse {
+    0%, 100% { transform: translateY(-25%); opacity: 1; }
+    50% { transform: translateY(0); opacity: 0.5; }
+  }
+  @keyframes slide {
+    0% { transform: translateX(-190%); }
+    50% { transform: translateX(190%); }
+    100% { transform: translateX(190%); }
+  }
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  color-scheme: light;
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background: #fffdf9;
+  color: var(--foreground);
+  font-family: var(--font-sans-jp), Arial, Helvetica, sans-serif;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+img {
+  display: block;
+}
+
+.writing-vertical {
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+}
+
+/* 既存: キラキラ・バウンス・フェードイン */
 @keyframes shine {
-  0%, 100% {
-    opacity: 1;
-  }
-  50% {
-    opacity: 0.3;
-  }
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.3; }
 }
 
 .shine-star {
@@ -21,14 +151,9 @@ body {
   animation: shine 2s infinite;
 }
 
-/* 上下ピクピク（fixed 中央寄せと併用する場合は translateX(-50%) をキーフレームに含める） */
 @keyframes bounceJitter {
-  0%, 100% {
-    transform: translate(-50%, 0);
-  }
-  50% {
-    transform: translate(-50%, -6px);
-  }
+  0%, 100% { transform: translate(-50%, 0); }
+  50% { transform: translate(-50%, -6px); }
 }
 
 .animate-bounceJitter {
@@ -36,31 +161,20 @@ body {
 }
 
 @keyframes fadeIn {
-  to {
-    opacity: 1;
-  }
+  to { opacity: 1; }
 }
 
 /* View Transition: 5周年ページへ「バーが拡大」して遷移 */
 @keyframes view-transition-expand-bar {
-  from {
-    clip-path: inset(0 50% 0 50%);
-  }
-  to {
-    clip-path: inset(0 0 0 0);
-  }
+  from { clip-path: inset(0 50% 0 50%); }
+  to { clip-path: inset(0 0 0 0); }
 }
 
 @keyframes view-transition-fade-out {
-  from {
-    opacity: 1;
-  }
-  to {
-    opacity: 0;
-  }
+  from { opacity: 1; }
+  to { opacity: 0; }
 }
 
-/* 5周年ボタン押下時のみ: バーが拡大して遷移先が現れる */
 html.view-transition-to-5th ::view-transition-old(root) {
   animation: view-transition-fade-out 0.35s ease-out forwards;
 }
@@ -69,7 +183,6 @@ html.view-transition-to-5th ::view-transition-new(root) {
   animation: view-transition-expand-bar 0.5s cubic-bezier(0.32, 0.72, 0, 1) forwards;
 }
 
-/* 5th PROJECT リスト→詳細: 同じ view-transition-name で共有要素がモーフする（デフォルトのアニメーションを使用） */
 @media (prefers-reduced-motion: reduce) {
   ::view-transition-group(*),
   ::view-transition-old(*),
@@ -78,7 +191,7 @@ html.view-transition-to-5th ::view-transition-new(root) {
   }
 }
 
-/* グローバル初回ロードインジケーター（本当の初回のみ表示） */
+/* グローバル初回ロードインジケーター */
 .global-loading-indicator {
   position: fixed;
   top: 0;
@@ -104,12 +217,6 @@ html.view-transition-to-5th ::view-transition-new(root) {
 }
 
 @keyframes global-loading-shimmer {
-  0% {
-    background-position: 200% 0;
-  }
-  100% {
-    background-position: -200% 0;
-  }
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
 }
-
-
