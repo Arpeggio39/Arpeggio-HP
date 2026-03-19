@@ -39,8 +39,8 @@ const config: Config = {
 
       },
       animation: {
-        fadeInUp: 'fadeInUp 1s ease-out',
-        fadeInDown: 'fadeInDown 1s ease-out',
+        fadeInUp: 'fadeInUp 0.6s ease-out forwards',
+        fadeInDown: 'fadeInDown 0.6s ease-out forwards',
         slideInFromLeft: 'slideInFromLeft 1.2s ease-out',
         slideInFromRight: 'slideInFromRight 1.2s ease-out',
         bouncePulse: 'bouncePulse 1s infinite',

@@ -49,8 +49,8 @@ export default function Home() {
                             tabIndex={0}
                             onClick={() => toggleAlbumExpand(album.id)}
                             onKeyDown={(e) => e.key === 'Enter' && toggleAlbumExpand(album.id)}
-                            className="relative bg-white p-6 w-4/5 max-w-7xl rounded-lg shadow-lg flex flex-col mb-8 p-4 cursor-pointer hover:bg-[#bec8d1] hover:shadow-xl transition-all duration-200 animate-fadeInUp"
-                            style={{ animationDelay: `${index * 80}ms`, animationFillMode: 'backwards' }}
+                            className={`relative bg-white p-6 w-4/5 max-w-7xl rounded-lg shadow-lg flex flex-col mb-8 p-4 cursor-pointer transition-all duration-200 animate-fadeInUp ${!expandedAlbums.has(album.id) ? 'hover:bg-[#bec8d1] hover:shadow-xl' : ''}`}
+                            style={{ animationDelay: `${index * 80}ms`, animationFillMode: 'forwards' }}
                         >
                             <div className="before:absolute before:top-0 before:left-0 before:border-t-4 before:border-l-4 before:border-mikuPink before:h-8 before:w-8 before:rounded-tl-lg
                    after:absolute after:top-0 after:right-0 after:border-t-4 after:border-r-4 after:border-mikuPink after:h-8 after:w-8 after:rounded-tr-lg">
@@ -100,6 +100,17 @@ export default function Home() {
                                                         </ul>
                                                     </div>
                                                 ))}
+                                            <div className="flex justify-center mt-6">
+                                                <button
+                                                    onClick={(e) => {
+                                                        e.stopPropagation();
+                                                        toggleAlbumExpand(album.id);
+                                                    }}
+                                                    className="bg-gray-300 text-black px-4 py-2 rounded hover:bg-gray-400 transition-colors focus:outline-none"
+                                                >
+                                                    閉じる
+                                                </button>
+                                            </div>
                                         </div>
                                     )}
                                 </div>
