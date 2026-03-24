@@ -6,33 +6,33 @@
     "dev": "next dev --webpack -p 3004",
     "build": "next build --webpack",
     "start": "next start",
-    "lint": "next lint",
+    "lint": "eslint .",
     "audit": "npm audit --audit-level=moderate"
   },
   "dependencies": {
-    "@emotion/react": "^11.13.3",
-    "@emotion/styled": "^11.13.0",
-    "@mui/icons-material": "^5.16.7",
-    "@mui/material": "^5.16.7",
-    "@tailwindcss/postcss": "^4.0.0",
-    "@types/three": "^0.180.0",
-    "next": "16.1.7",
-    "tailwindcss": "^4.0.0",
-    "react": "^19.1.1",
-    "react-dom": "^19.1.1",
-    "three": "^0.180.0"
+    "@emotion/react": "^11.14.0",
+    "@emotion/styled": "^11.14.1",
+    "@mui/icons-material": "^7.3.9",
+    "@mui/material": "^7.3.9",
+    "@tailwindcss/postcss": "^4.2.2",
+    "@types/three": "^0.183.1",
+    "next": "16.2.1",
+    "tailwindcss": "^4.2.2",
+    "react": "^19.2.4",
+    "react-dom": "^19.2.4",
+    "three": "^0.183.2"
   },
   "overrides": {
     "ajv": "6.14.0",
-    "flatted": "3.4.1",
+    "flatted": "3.4.2",
     "minimatch": "9.0.7"
   },
   "devDependencies": {
-    "@types/node": "^20",
-    "@types/react": "^19.1.12",
-    "@types/react-dom": "^19.1.9",
-    "eslint": "^9",
-    "eslint-config-next": "^16.1.7",
+    "@types/node": "^25",
+    "@types/react": "^19.2.14",
+    "@types/react-dom": "^19.2.3",
+    "eslint": "^9.39.4",
+    "eslint-config-next": "^16.2.1",
     "postcss": "^8",
     "typescript": "^5"
   }

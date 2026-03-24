@@ -19,7 +19,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
 
       - name: Install OSV-Scanner
         run: |
@@ -33,7 +33,7 @@ jobs:
         continue-on-error: true
 
       - name: Upload scan results
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v6
         with:
           name: scan-results
           path: scan-results.json
@@ -46,7 +46,7 @@ jobs:
     if: always()
     steps:
       - name: Download scan results
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v7
         with:
           path: scan-results
 
