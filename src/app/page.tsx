@@ -8,6 +8,31 @@ import { groups } from '../const/group/GroupList';
 import Footer from '@/components/Footer';
 import Image from 'next/image';
 
+function AmuIllustration({
+  src,
+  alt,
+  frameClassName,
+  imageClassName,
+}: {
+  src: string;
+  alt: string;
+  frameClassName: string;
+  imageClassName: string;
+}) {
+  return (
+    <div className={`flex flex-col items-center ${frameClassName}`}>
+      <Image
+        src={src}
+        alt={alt}
+        width={220}
+        height={275}
+        className={`rounded-lg shadow-md object-contain ${imageClassName}`}
+      />
+      <p className="text-[11px] text-gray-500 text-center mt-1.5">© あむ</p>
+    </div>
+  );
+}
+
 export default function Home() {
   const [scrollOpacity, setScrollOpacity] = useState(1);
 
@@ -65,21 +90,40 @@ export default function Home() {
         </p>
       </div>
 
-      {/* Arpeggioって何をするサークル？ */}
-      <div 
-        className="flex flex-col items-center justify-center pb-10 tracking-wider pt-4 px-12"
-      >
-        <div className="max-w-4xl w-full text-left">
-          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold">Arpeggioって何をするサークル？</h2>
-          
+      {/* Arpeggioって何をするサークル？（本文は従来どおり max-w-4xl 中央／イラストはガターに absolute） */}
+      <div className="relative flex flex-col items-center justify-center pb-10 tracking-wider pt-4 px-12">
+        <div
+          className="pointer-events-none absolute top-16 z-0 hidden w-44 origin-top -rotate-6 xl:block 2xl:w-52"
+          style={{ left: 'max(0.75rem, calc(50% - 40rem))' }}
+          aria-hidden
+        >
+          <AmuIllustration
+            src="/illustrations/amu/ロキ.jpg"
+            alt="ロキのイラスト"
+            frameClassName=""
+            imageClassName="max-h-52 w-full 2xl:max-h-60"
+          />
+        </div>
+        <div className="max-w-4xl w-full text-left relative z-10">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold">
+            Arpeggioって何をするサークル？
+          </h2>
           <p className="text-base sm:text-lg md:text-xl mt-10">
             ArpeggioはVOCALOIDをはじめ合成音声に関する創作活動をしているサークルです！
           </p>
-          <p className="text-base sm:text-lg md:text-xl mb-10">
+          <p className="text-base sm:text-lg md:text-xl mb-10 mt-3">
             以下の8個の班に分かれて活動しています！
           </p>
         </div>
-        <div className="grid grid-cols-1 gap-6 mt-5 max-w-2xl w-full">
+        <div className="pointer-events-none mt-2 flex w-full justify-center px-2 xl:hidden" aria-hidden>
+          <AmuIllustration
+            src="/illustrations/amu/ロキ.jpg"
+            alt=""
+            frameClassName="-rotate-6 origin-top"
+            imageClassName="max-h-44 w-40 sm:max-h-48 sm:w-44"
+          />
+        </div>
+        <div className="grid grid-cols-1 gap-6 mt-5 max-w-2xl w-full relative z-10">
           {groups.map((group) => (
             <div
               key={group.id}
@@ -117,7 +161,7 @@ export default function Home() {
         </div>
         <a
           href="/activity"
-          className="mt-10 font-semibold text-lg sm:text-xl md:text-2xl px-6 sm:px-8 md:px-10 py-3 sm:py-4 rounded-lg transition-colors duration-200 bg-mikuBlue !text-white hover:bg-mikuPink"
+          className="mt-10 font-semibold text-lg sm:text-xl md:text-2xl px-6 sm:px-8 md:px-10 py-3 sm:py-4 rounded-lg transition-colors duration-200 bg-mikuBlue !text-white hover:bg-mikuPink relative z-10"
         >
           各班の活動内容を見る
         </a>
@@ -158,17 +202,37 @@ export default function Home() {
       </div>
 
       {/* Arpeggioにはどんな人がいるの？？ */}
-      <div 
-        className="flex flex-col items-center justify-center py-10 tracking-wider px-10"
-      >
-        <div className="max-w-4xl w-full text-left">
-          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold">Arpeggioにはどんな人がいるの？？</h2>
+      <div className="relative flex flex-col items-center justify-center py-10 tracking-wider px-10">
+        <div
+          className="pointer-events-none absolute top-12 z-0 hidden w-44 origin-top rotate-6 xl:block 2xl:w-52"
+          style={{ left: 'min(calc(100% - 11rem - 0.75rem), calc(50% + 29rem))' }}
+          aria-hidden
+        >
+          <AmuIllustration
+            src="/illustrations/amu/シーエ.jpg"
+            alt="シーエのイラスト"
+            frameClassName=""
+            imageClassName="max-h-52 w-full 2xl:max-h-60"
+          />
+        </div>
+        <div className="max-w-4xl w-full text-left relative z-10">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold">
+            Arpeggioにはどんな人がいるの？？
+          </h2>
           <p className="text-base sm:text-lg md:text-xl mt-5">
             Arpeggioはとにかく面白い人や歌が上手な人、神絵師さんなど、個性豊かな人たちがたくさんいます
           </p>
         </div>
-        <div className="flex flex-col md:flex-row space-y-4 md:space-y-0 md:space-x-4 mt-10">
-          <a 
+        <div className="pointer-events-none mt-6 flex w-full justify-center px-2 xl:hidden" aria-hidden>
+          <AmuIllustration
+            src="/illustrations/amu/シーエ.jpg"
+            alt=""
+            frameClassName="rotate-6 origin-top"
+            imageClassName="max-h-44 w-40 sm:max-h-48 sm:w-44"
+          />
+        </div>
+        <div className="flex flex-col md:flex-row space-y-4 md:space-y-0 md:space-x-4 mt-10 max-w-4xl w-full relative z-10">
+          <a
             href="https://note.com/arpeggiovocaloid/"
             target="_blank"
             rel="noopener noreferrer"
@@ -176,7 +240,7 @@ export default function Home() {
           >
             noteブログ
           </a>
-          <a 
+          <a
             href="http://arpeggiod.blog90.fc2.com/"
             target="_blank"
             rel="noopener noreferrer"
@@ -188,17 +252,35 @@ export default function Home() {
       </div>
 
       {/* Arpeggioに興味がある！ */}
-      <div 
-        className="flex flex-col items-center justify-center py-10 tracking-wider px-10"
-      >
-        <div className="max-w-4xl w-full text-left">
+      <div className="relative flex flex-col items-center justify-center py-10 tracking-wider px-10">
+        <div
+          className="pointer-events-none absolute top-14 z-0 hidden w-44 origin-top -rotate-[8deg] xl:block 2xl:w-52"
+          style={{ left: 'max(0.75rem, calc(50% - 40rem))' }}
+          aria-hidden
+        >
+          <AmuIllustration
+            src="/illustrations/amu/初音.jpg"
+            alt="初音ミクのイラスト"
+            frameClassName=""
+            imageClassName="max-h-52 w-full 2xl:max-h-60"
+          />
+        </div>
+        <div className="max-w-4xl w-full text-left relative z-10">
           <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold">Arpeggioに興味がある！</h2>
           <p className="text-base sm:text-lg md:text-xl mt-5">
             Arpeggioの活動詳細やコンタクトはXから受け付けています。ぜひDMにてご連絡ください！
           </p>
         </div>
-        <div className="flex flex-col md:flex-row space-y-4 md:space-y-0 md:space-x-4 mt-10">
-          <a 
+        <div className="pointer-events-none mt-6 flex w-full justify-center px-2 xl:hidden" aria-hidden>
+          <AmuIllustration
+            src="/illustrations/amu/初音.jpg"
+            alt=""
+            frameClassName="-rotate-[8deg] origin-top"
+            imageClassName="max-h-44 w-40 sm:max-h-48 sm:w-44"
+          />
+        </div>
+        <div className="flex flex-col md:flex-row space-y-4 md:space-y-0 md:space-x-4 mt-10 max-w-4xl w-full relative z-10">
+          <a
             href="https://twitter.com/arpeggio_kouhou"
             target="_blank"
             rel="noopener noreferrer"
