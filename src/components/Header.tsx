@@ -1,7 +1,6 @@
 "use client";
 
-import React, { useState, useEffect } from 'react';
-import NextLink from 'next/link';
+import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 
@@ -12,7 +11,7 @@ type HeaderProps = {
     expandFromZero?: boolean;
 };
 
-const Header: React.FC<HeaderProps> = ({ bgColor, textColor, expandFromZero }) => {
+function Header({ bgColor, textColor, expandFromZero }: HeaderProps) {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const [hasExpanded, setHasExpanded] = useState(!expandFromZero);
 
@@ -57,7 +56,7 @@ const Header: React.FC<HeaderProps> = ({ bgColor, textColor, expandFromZero }) =
                 {/* ヘッダー内容 */}
                 <div className="flex items-center justify-between px-6 py-3 h-16">
                     {/* ロゴ部分 */}
-                    <NextLink href="/" className="flex items-center space-x-2 hover:opacity-80 transition-opacity">
+                    <Link href="/" className="flex items-center space-x-2 hover:opacity-80 transition-opacity">
                         <Image
                             src="/clearLogo.png"
                             alt="Arpeggio Logo"
@@ -66,16 +65,16 @@ const Header: React.FC<HeaderProps> = ({ bgColor, textColor, expandFromZero }) =
                             className="w-8 h-8"
                         />
                         <span className="text-lg font-light tracking-widest text-black">Arpeggio</span>
-                    </NextLink>
+                    </Link>
 
                     {/* PC向けのメニュー */}
                     <nav className="hidden lg:flex space-x-4">
-                        <NextLink href="/" className="px-4 py-2 text-black hover:text-pink-500 rounded-lg transition-all font-light tracking-widest">TOP</NextLink>
-                        <NextLink href="/activity" className="px-4 py-2 text-black hover:text-pink-500 rounded-lg transition-all font-light tracking-widest">活動内容</NextLink>
+                        <Link href="/" className="px-4 py-2 text-black hover:text-pink-500 rounded-lg transition-all font-light tracking-widest">TOP</Link>
+                        <Link href="/activity" className="px-4 py-2 text-black hover:text-pink-500 rounded-lg transition-all font-light tracking-widest">活動内容</Link>
                         <a href="https://note.com/arpeggiovocaloid/" target="_blank" rel="noopener noreferrer" className="px-4 py-2 text-black hover:text-pink-500 rounded-lg transition-all font-light tracking-widest">note</a>
                         <a href="http://arpeggiod.blog90.fc2.com/" target="_blank" rel="noopener noreferrer" className="px-4 py-2 text-black hover:text-pink-500 rounded-lg transition-all font-light tracking-widest">fc2</a>
-                        <NextLink href="/maita" className="px-4 py-2 text-black hover:text-pink-500 rounded-lg transition-all font-light tracking-widest">琵音マイタ</NextLink>
-                        <NextLink href="/album" className="px-4 py-2 text-black hover:text-pink-500 rounded-lg transition-all font-light tracking-widest">ALBUM</NextLink>
+                        <Link href="/maita" className="px-4 py-2 text-black hover:text-pink-500 rounded-lg transition-all font-light tracking-widest">琵音マイタ</Link>
+                        <Link href="/album" className="px-4 py-2 text-black hover:text-pink-500 rounded-lg transition-all font-light tracking-widest">ALBUM</Link>
                     </nav>
 
                     {/* モバイルメニューボタン */}
@@ -142,6 +141,6 @@ const Header: React.FC<HeaderProps> = ({ bgColor, textColor, expandFromZero }) =
         </header>
         </>
     );
-};
+}
 
 export default Header;

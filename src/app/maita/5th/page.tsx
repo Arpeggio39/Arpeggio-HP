@@ -11,40 +11,18 @@ import { useSearchParams } from 'next/navigation';
 function FifthAnniversaryContent() {
     const searchParams = useSearchParams();
     const skipSplash = searchParams.get('skipSplash') === '1' || searchParams.get('skipSplash') === 'true';
-    const portraits = [
-        '/maita/Normal/portrait.png',
-        '/maita/Capella/portrait.png',
-        '/maita/Antares/portrait.png',
-        '/maita/Sirius/portrait.png',
-        '/maita/Polaris/portrait.png',
-    ];
-    const [currentIndex, setCurrentIndex] = useState(0);
-    const [dotIndex, setDotIndex] = useState(0);
-    const [loaded, setLoaded] = useState(false);
     const [showSplash, setShowSplash] = useState(!skipSplash);
 
     useEffect(() => {
-        const interval = setInterval(() => {
-            setCurrentIndex((prevIndex) => (prevIndex + 1) % portraits.length);
-        }, 3000);
-        return () => clearInterval(interval);
-    }, [portraits.length]);
-
-    useEffect(() => {
-        const interval = setInterval(() => {
-            setDotIndex((prev) => (prev + 1) % 4);
-        }, 500);
-        return () => clearInterval(interval);
-    }, []);
-
-    useEffect(() => {
-        setLoaded(true);
-        document.documentElement.classList.remove('view-transition-to-5th');
+        queueMicrotask(() => {
+            document.documentElement.classList.remove('view-transition-to-5th');
+            if (skipSplash) {
+                setShowSplash(false);
+            }
+        });
         if (skipSplash) {
-            setShowSplash(false);
             return;
         }
-        // スプラッシュ表示時間（プログレスバー 1s と揃えている）
         const timer = setTimeout(() => setShowSplash(false), 300);
         return () => clearTimeout(timer);
     }, [skipSplash]);

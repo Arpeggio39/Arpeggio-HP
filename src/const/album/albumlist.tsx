@@ -1,4 +1,4 @@
-import { Album, AlbumList } from "@/classes/album";
+import { AlbumList } from "@/classes/album";
 import { album20240923 } from "./album20240923";
 import { album20240302 } from "./album20240302";
 import { album20231230 } from "./album20231230";

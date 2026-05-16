@@ -34,7 +34,7 @@ const AnimatedLogo = ({
 
       return () => clearTimeout(timer)
     } else {
-      setIsVisible(false)
+      queueMicrotask(() => setIsVisible(false))
     }
   }, [show, delay, onComplete])
 

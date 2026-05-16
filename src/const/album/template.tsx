@@ -1,6 +1,7 @@
 import { Album, Disc, Song } from "@/classes/album";
 
-const album = new Album(
+/** 新規アルバム追加時のひな形（必要に応じて他ファイルへコピー） */
+export const album = new Album(
     "",
     "",
     "",
