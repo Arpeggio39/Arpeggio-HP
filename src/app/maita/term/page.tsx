@@ -24,20 +24,22 @@ export default function MaitaTermPage() {
     }, []);
 
     useEffect(() => {
-        const queryParams = new URLSearchParams(window.location.search);
-        const langParam = queryParams.get('lang');
-        if (langParam === 'en') {
-            setLang('en');
-        } else if (langParam === 'ja') {
-            setLang('ja');
-        } else {
-            const userLanguage = navigator.language;
-            if (userLanguage.startsWith('ja')) {
+        queueMicrotask(() => {
+            const queryParams = new URLSearchParams(window.location.search);
+            const langParam = queryParams.get('lang');
+            if (langParam === 'en') {
+                setLang('en');
+            } else if (langParam === 'ja') {
                 setLang('ja');
             } else {
-                setLang('en');
+                const userLanguage = navigator.language;
+                if (userLanguage.startsWith('ja')) {
+                    setLang('ja');
+                } else {
+                    setLang('en');
+                }
             }
-        }
+        });
     }, []);
 
     const japaneseContent = {

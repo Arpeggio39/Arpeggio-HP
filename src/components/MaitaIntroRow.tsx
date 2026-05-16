@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import Image from 'next/image';
 import MusicNoteIcon from '@mui/icons-material/MusicNote';
 import DownloadIcon from '@mui/icons-material/Download';
@@ -9,7 +9,7 @@ type MaitaProps = {
     onDownload: (id: string, name: string, description: string,downloadUrl:string) => void;
 };
 
-export const MaitaIntroductionRow: React.FC<MaitaProps> = ({ maita, onDownload }) => {
+export function MaitaIntroductionRow({ maita, onDownload }: MaitaProps) {
     const [borderColor, setBorderColor] = useState(maita.colors[0]);
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [designImageExists, setDesignImageExists] = useState(false);
@@ -38,8 +38,8 @@ export const MaitaIntroductionRow: React.FC<MaitaProps> = ({ maita, onDownload }
                 if (response.ok) {
                     setDesignImageExists(true);
                 }
-            } catch (error) {
-                setDesignImageExists(false); // Set false if there's an error
+            } catch {
+                setDesignImageExists(false);
             }
         };
         checkImageExistence();
@@ -72,7 +72,7 @@ export const MaitaIntroductionRow: React.FC<MaitaProps> = ({ maita, onDownload }
                         className="w-1/2 md:w-[224px] md:flex-shrink-0 h-auto object-contain"
                         width={224}
                         height={240}
-                        layout="intrinsic"
+                        sizes="(min-width: 768px) 224px, 50vw"
                     />
                 </div>
 
@@ -132,4 +132,4 @@ export const MaitaIntroductionRow: React.FC<MaitaProps> = ({ maita, onDownload }
             )}
         </div>
     );
-};
+}

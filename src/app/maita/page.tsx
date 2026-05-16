@@ -2,7 +2,7 @@
 
 import Head from 'next/head';
 import { useState, useEffect, useRef } from 'react';
-import NextLink from 'next/link';
+import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import Image from 'next/image';
 import Header from '@/components/Header';
@@ -29,67 +29,40 @@ export default function Home() {
     const [show5thButton, setShow5thButton] = useState(false);
 
     useEffect(() => {
-        setIsMaitaLogoVisible(true);
-        setTimeout(() => setIsCapellaVisible(true), 300);
-        setTimeout(() => setIsAntaresVisible(true), 600);
-        setTimeout(() => setIsSiriusVisible(true), 900);
-        setTimeout(() => setIsPolarisVisible(true), 1200);
-        setTimeout(() => setIsScrollGUide(true), 1500);
-        setTimeout(() => setShow5thButton(true), 1700);
-        setTimeout(() => setIsAnimationFinish(true), 2000);
-    }, []);
-
-
-    const [scrollOpacity, setScrollOpacity] = useState(1);
-    const [isScrolled, setIsScrolled] = useState(false);
-    const [isMobile, setIsMobile] = useState(false);
-
-    useEffect(() => {
-        function handleResize() {
-            setIsMobile(window.innerWidth < 768); // md breakpoint
-        }
-        handleResize();
-        window.addEventListener('resize', handleResize);
-        return () => window.removeEventListener('resize', handleResize);
-    }, []);
-
-    useEffect(() => {
-        function handleScroll() {
-            const scrollY = window.scrollY || document.documentElement.scrollTop;
-
-            if (scrollY > 10) {
-                setScrollOpacity(0);
-                setIsScrolled(true);
-            } else {
-                setScrollOpacity(1);
-                setIsScrolled(false);
-            }
-        }
-
-        window.addEventListener('scroll', handleScroll);
-        return () => window.removeEventListener('scroll', handleScroll);
+        queueMicrotask(() => {
+            setIsMaitaLogoVisible(true);
+            setTimeout(() => setIsCapellaVisible(true), 300);
+            setTimeout(() => setIsAntaresVisible(true), 600);
+            setTimeout(() => setIsSiriusVisible(true), 900);
+            setTimeout(() => setIsPolarisVisible(true), 1200);
+            setTimeout(() => setIsScrollGUide(true), 1500);
+            setTimeout(() => setShow5thButton(true), 1700);
+            setTimeout(() => setIsAnimationFinish(true), 2000);
+        });
     }, []);
 
 
     useEffect(() => {
-        const queryParams = new URLSearchParams(window.location.search);
-        const lang = queryParams.get('lang');
-        if (lang === 'en') {
-            setLang('en');
-            setTermMessage('Please review the terms of use before continuing with the download.');
-        } else if (lang === 'ja') {
-            setLang('ja');
-            setTermMessage('ダウンロードを続行するには、利用規約をご確認ください。');
-        } else {
-            const userLanguage = navigator.language;
-            if (userLanguage.startsWith('ja')) {
+        queueMicrotask(() => {
+            const queryParams = new URLSearchParams(window.location.search);
+            const langParam = queryParams.get('lang');
+            if (langParam === 'en') {
+                setLang('en');
+                setTermMessage('Please review the terms of use before continuing with the download.');
+            } else if (langParam === 'ja') {
                 setLang('ja');
                 setTermMessage('ダウンロードを続行するには、利用規約をご確認ください。');
             } else {
-                setLang('en');
-                setTermMessage('Please review the terms of use before continuing with the download.');
+                const userLanguage = navigator.language;
+                if (userLanguage.startsWith('ja')) {
+                    setLang('ja');
+                    setTermMessage('ダウンロードを続行するには、利用規約をご確認ください。');
+                } else {
+                    setLang('en');
+                    setTermMessage('Please review the terms of use before continuing with the download.');
+                }
             }
-        }
+        });
     }, []);
 
     const handleDownloadClick = (id: string, name: string, description: string, downloadUrl: string) => {
@@ -181,7 +154,7 @@ export default function Home() {
                             transition: 'opacity 0.4s ease-out',
                         }}
                     >
-                        <NextLink
+                        <Link
                             href="/maita/5th/"
                             onClick={handle5thClick}
                             aria-label="5周年ページを開く"
@@ -195,7 +168,7 @@ export default function Home() {
                                 className="md:w-[56px] md:h-[56px] w-[40px] h-[40px]"
                             />
                             <span>5周年ページはこちら！</span>
-                        </NextLink>
+                        </Link>
                     </div>
                     <div className="max-w-4xl w-full text-left px-4 sm:px-7">
                         <h2 className="text-2xl sm:text-3xl md:text-6xl mt-12 sm:mt-16 md:mt-20 font-bold">琵音マイタとは？</h2>
@@ -282,17 +255,17 @@ export default function Home() {
                             />
                             {lang === 'ja' ? (
                                 <>
-                                    <NextLink href="/maita/term" className="text-mikuBlue underline hover:text-mikuPink transition-colors" target="_blank">
+                                    <Link href="/maita/term" className="text-mikuBlue underline hover:text-mikuPink transition-colors" target="_blank">
                                         利用規約
-                                    </NextLink>
+                                    </Link>
                                     に同意します
                                 </>
                             ) : (
                                 <>
                                     I agree to the
-                                    <NextLink href="/maita/term" className="text-mikuBlue underline hover:text-mikuPink transition-colors ml-2" target="_blank">
+                                    <Link href="/maita/term" className="text-mikuBlue underline hover:text-mikuPink transition-colors ml-2" target="_blank">
                                         terms of use
-                                    </NextLink>
+                                    </Link>
                                 </>
                             )}
                         </label>
