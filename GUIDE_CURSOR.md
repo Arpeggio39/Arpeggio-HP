@@ -100,7 +100,7 @@ Cursorの一番左下にある同期ボタンを押して、最新のデータ�
 ![Cursor](./readme_pictures/cursor_sync.png)
 
 **次に、作業用ブランチを作成する**
-Cursorの左下にある、mainという文字（もしかしたらdevelopなどの他の文字かも）ボタンを押す
+Cursorの左下にある、mainという文字（もしかしたら他のブランチ名かも）ボタンを押す
 
 ![Cursor](./readme_pictures/cursor_current_branch.png)
 
@@ -108,7 +108,9 @@ Cursorの左下にある、mainという文字（もしかしたらdevelopなど
 
 ![Cursor](./readme_pictures/cursor_create_branch_1.png)
 
-「origin/develop」というボタンを押す
+「origin/main」というボタンを押す
+
+> **注意**: 下記の画像は `develop` ブランチ時代のスクリーンショットです。現在は **`origin/main`** を選択してください。
 
 ![Cursor](./readme_pictures/cursor_create_branch_2.png)
 
@@ -131,7 +133,7 @@ Cursorの左下にある、mainという文字（もしかしたらdevelopなど
 
 ## とにかく開発に着手するときは、ブランチが#(番号)になっているか確認
 
-## くれぐれもmainまたはdevelopの状態で進めてはいけない
+## くれぐれもmainの状態で進めてはいけない
 
 本当に気をつけて！！
 
@@ -187,12 +189,14 @@ PRを出すためにペジオHPのGitHubにアクセスしてください。
 黄色の表示のところに、自分のユーザー名のブランチが表示されている場合、Compare & pull requestを押してください。もし表示されていなければ、New pull requestを押してください。
 どっちを押しても大丈夫です
 
+> **注意**: 下記の画像は `develop` を base にしていた時代のスクリーンショットです。現在は **base を `main`** に設定してください。
+
 ![GitHub](./readme_pictures/github_pr_1.png)
 
 そしてPR画面では、
 
 ```注意
-baseがdevelopになっているかを確認！もしなっていなければ、developを選択する。
+baseがmainになっているかを確認！もしなっていなければ、mainを選択する。
 ```
 
 そして、
