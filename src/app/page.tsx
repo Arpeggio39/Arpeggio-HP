@@ -94,7 +94,7 @@ export default function Home() {
       <div className="relative flex flex-col items-center justify-center pb-10 tracking-wider pt-4 px-12">
         <div
           className="pointer-events-none absolute top-16 z-0 hidden w-44 origin-top -rotate-6 xl:block 2xl:w-52"
-          style={{ left: 'max(0.75rem, calc(50% - 40rem))' }}
+          style={{ left: 'max(0.75rem, calc(50% - 43rem))' }}
           aria-hidden
         >
           <AmuIllustration
@@ -255,7 +255,7 @@ export default function Home() {
       <div className="relative flex flex-col items-center justify-center py-10 tracking-wider px-10">
         <div
           className="pointer-events-none absolute top-14 z-0 hidden w-44 origin-top -rotate-[8deg] xl:block 2xl:w-52"
-          style={{ left: 'max(0.75rem, calc(50% - 40rem))' }}
+          style={{ left: 'max(0.75rem, calc(50% - 43rem))' }}
           aria-hidden
         >
           <AmuIllustration
