@@ -1,0 +1,18 @@
+@keyframes loadingBar {
+  from {
+    width: 0;
+  }
+  to {
+    width: 100%;
+  }
+}
+
+.loadingBar {
+  animation: loadingBar 1s linear forwards;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .loadingBar {
+    animation-duration: 1ms;
+  }
+}

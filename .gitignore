@@ -31,6 +31,7 @@ build/Release
 .yarn/install-state.gz
 /.next/
 /out/
+/.playwright-mcp/
 /build
 *.pem
 .env*.local

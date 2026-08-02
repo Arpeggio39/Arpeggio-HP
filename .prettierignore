@@ -1,0 +1,6 @@
+.next
+out
+.playwright-mcp
+node_modules
+public
+readme_pictures

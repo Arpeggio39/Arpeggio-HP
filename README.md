@@ -1,47 +1,65 @@
-# Arpeggioホームページ開発
+# Arpeggio Homepage
 
-ホームページ：https://arpeggio393.web.app/
+同志社大学 VOCALOID 研究会 Arpeggio の公式ホームページです。
 
-この手順では、**プログラミング初心者** の人でも、  
-**ホームページを一通り開発できるようになる** までに必要なすべての環境構築・手順を説明します‼️
+- 公開サイト: <https://arpeggio393.web.app/>
+- 開発ガイド: [GUIDE_CURSOR.md](./GUIDE_CURSOR.md)
 
----
+## 技術構成
 
-## 具体的な流れ
+- Next.js App Router / React / TypeScript
+- Tailwind CSS
+- Static Export (`output: "export"`)
+- Firebase Hosting
+- Node.js 26
 
-1. GitHub アカウントを作る
-2. エディターを選ぶ
-3. チュートリアル
-4. 実際に開発を始めよう
+## セットアップ
 
----
+```bash
+nvm use
+npm ci
+npm run dev
+```
 
-## ①GitHubアカウントを作る
+開発サーバーは <http://localhost:3004> で起動します。
 
-- [GitHub公式サイト](https://github.com) にアクセスし、右上にあるボタンからアカウントを作成  
+## コマンド
 
+```bash
+npm run dev          # 開発サーバー
+npm run lint         # ESLint
+npm run typecheck    # TypeScript
+npm run format       # Prettierで自動整形
+npm run format:check # 整形差分の検査
+npm run build        # out/へ静的サイトを出力
+npm run audit        # 依存パッケージの脆弱性検査
+```
 
-**Githubとは？**
-GitHubとは、プログラムの保存・共有に適したクラウドストレージ的なサービスです。
-「GoogleDriveで管理したらいいじゃん？」と思うかもしれませんが、それだと共同開発が難しいのでGitHubを使います。
-最初は使うのに戸惑うかもしれませんが、頑張ってついてきてください！
+## ディレクトリ構成
 
----
+```text
+src/
+├── app/                         # ページとルート固有コンポーネント
+│   ├── _components/             # トップページ専用コンポーネント
+│   ├── album/_components/       # アルバム画面の操作UI
+│   ├── maita/_components/       # 琵音マイタ画面の操作UI
+│   ├── members/[memberId]/      # 動的セグメントを静的生成するメンバー詳細
+│   └── ...
+├── components/
+│   ├── layout/                  # 全ページ共通レイアウト
+│   └── ui/                      # 再利用可能な小さなUI
+└── data/                        # 型定義と静的コンテンツ
+    └── albums/                  # アルバムごとのデータ
+```
 
-## ②エディターを選ぶ
+ページは Server Component を標準とし、状態・イベント・ブラウザ API が必要な部分だけを `*.client.tsx` に分離しています。静的コンテンツはクラスではなく、`src/data` の型付きプレーンオブジェクトで管理します。
 
-**Cursorで開発**
-少し導入が手間だが、サクサク開発できる。
+## コンテンツの追加場所
 
-詳細な手順は以下のリンクから確認してください。
+- アルバム: `src/data/albums/`
+- メンバー: `src/data/members.ts`
+- 活動チーム: `src/data/groups.ts`
+- 琵音マイタ音源: `src/data/maita.ts`
+- 5周年企画: `src/data/anniversary.ts`
 
-- [Cursorでの開発手順](./GUIDE_CURSOR.md)
-
---- 
-
-## ③チュートリアル
-
-セットアップは完了しましたか？
-では、まず練習として「ペじおHP開発メンバー各々の自己紹介ページ」を作ってみましょう！
-
-https://arpeggio393.web.app/members/
+`npm run build` が成功すると、Firebase Hosting に配置できる完全な静的サイトが `out/` に生成されます。
