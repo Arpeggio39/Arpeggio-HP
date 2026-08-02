@@ -1,10 +1,9 @@
-
 # Cursorでの開発手順
 
 ## Gitのインストールとセットアップ
 
-- [Git公式サイト](https://git-scm.com/) からダウンロードしてインストール  
-- インストール完了後、ターミナルで以下のコマンドを実行して、ユーザー情報を設定  
+- [Git公式サイト](https://git-scm.com/) からダウンロードしてインストール
+- インストール完了後、ターミナルで以下のコマンドを実行して、ユーザー情報を設定
 
   ```コマンド
   git config --global user.name "{Githubのユーザー名}"
@@ -16,7 +15,7 @@
   ```コマンド
     git config --global user.name "Nis450"
     git config --global user.email "arpeggio@example.com"
-    ```
+  ```
 
 ## Cursorのインストール
 
@@ -24,18 +23,16 @@
 
 ## Node.js と npm をインストール
 
-- [Node.js公式サイト](https://nodejs.org/ja/download) からLTS版をダウンロードしてインストール  
+- [Node.js公式サイト](https://nodejs.org/ja/download) から Node.js 26 をダウンロードしてインストール
 - インストールが完了したらパソコンを再起動
-- インストール完了後、ターミナルを開いて以下のコマンドを実行し、インストールできたか確認  
+- インストール完了後、ターミナルを開いて以下のコマンドを実行し、インストールできたか確認
 
 ```コマンド
 node -v
 npm -v
 ```
 
-![ターミナル](./readme_pictures/node_and_npm_v.png)
-
-もしバージョンが表示されない場合、連絡ください
+`v26.x.x` と npm 11系のバージョンが表示されれば準備完了です。バージョンが表示されない場合は連絡してください。
 
 ## GithubからペジオHPのプログラムをダウンロード
 
@@ -60,8 +57,6 @@ https://github.com/Arpeggio39/Arpeggio-HP.git
 
 左にファイル一覧が表示されたら準備OK！
 
-![Cursor](./readme_pictures/cursor_editor_top.png)
-
 ここから先のコマンドは**ペジオHPフォルダを開いているCursor上のターミナル**で実行してください。
 左上にターミナルというボタンがあるはず？
 
@@ -70,10 +65,8 @@ https://github.com/Arpeggio39/Arpeggio-HP.git
 下記のコマンドを実行。
 
 ```コマンド
-npm install
+npm ci
 ```
-
-![Cursor](./readme_pictures/cursor_cli.png)
 
 ## ブラウザでプレビューする
 
@@ -83,9 +76,7 @@ npm install
 npm run dev
 ```
 
-![Cursor](./readme_pictures/cursor_npmrundev.png)
-
-- ブラウザで [http://localhost:3000](http://localhost:3000) にアクセスし、動作確認  
+- ブラウザで [http://localhost:3004](http://localhost:3004) にアクセスし、動作確認
 
 ![Preview](./readme_pictures/run_hp.png)
 
@@ -139,6 +130,15 @@ Cursorの左下にある、mainという文字（もしかしたら他のブラ�
 
 ## 開発がひと段落ついたら
 
+コミット前に、ターミナルで次のチェックを実行してください。
+
+```bash
+npm run format
+npm run lint
+npm run typecheck
+npm run build
+```
+
 Cursorの左上にあるツリーみたいなボタンを押して、作業内容を簡単に入力して、下矢印？のボタンを押して「**コミットしてプッシュ**」を押す。
 
 ![Cursor](./readme_pictures/cursor_git_push.png)
@@ -155,16 +155,15 @@ Cursorの左上にあるツリーみたいなボタンを押して、作業内�
 
 という感じでも問題ありません。
 
-- この際、**初回はパスワードが求められる**ことがあります。その際、**パスワード欄にはPersonal Access Tokenを入力**してください  
-  
-  ### Personal Access Tokenの作成手順
+- この際、**初回はパスワードが求められる**ことがあります。その際、**パスワード欄にはPersonal Access Tokenを入力**してください
 
+  ### Personal Access Tokenの作成手順
   1. 以下のURLにアクセス  
      <https://github.com/settings/tokens>
-  2. 右上にある「Generate new token (classic)」をクリック  
-  3. トークンの名前（例：Arpeggio開発用）と有効期限を設定  
-  4. 「repo」にチェックを入れる  
-  5. 下までスクロールし、「Generate token」をクリック  
+  2. 右上にある「Generate new token (classic)」をクリック
+  3. トークンの名前（例：Arpeggio開発用）と有効期限を設定
+  4. 「repo」にチェックを入れる
+  5. 下までスクロールし、「Generate token」をクリック
   6. 表示されたトークンをコピーし、**パスワード欄に貼り付ける**
 
 ちなみに...
@@ -184,7 +183,7 @@ Pull Request（PR）とは、各々が開発した内容を管理者（にっし
 
 PRを出すためにペジオHPのGitHubにアクセスしてください。
 
-<https://github.com/Nis450/ArpeggioHP/pulls/>
+<https://github.com/Arpeggio39/Arpeggio-HP/pulls/>
 
 黄色の表示のところに、自分のユーザー名のブランチが表示されている場合、Compare & pull requestを押してください。もし表示されていなければ、New pull requestを押してください。
 どっちを押しても大丈夫です
@@ -222,7 +221,7 @@ PRを出したらディスコサーバーで「PR出した」と一声欲しい�
 - Git、Node.js、npmのインストール
 - Cursorのインストール
 - ペジオHPのコードをGitHubからClone
-- 必要なパッケージをインストール（npm install）
+- 必要なパッケージをインストール（npm ci）
 
 ## 開発フェーズで毎回行う作業
 

@@ -3,28 +3,14 @@
     {
       "target": "arpeggio393",
       "public": "out",
-      "ignore": [
-        "firebase.json",
-        "**/.*",
-        "**/node_modules/**"
-      ],
-      "rewrites": [
-        {
-          "source": "**",
-          "destination": "/index.html"
-        }
-      ],
+      "ignore": ["firebase.json", "**/.*", "**/node_modules/**"],
       "headers": [
         {
-          "source": "**/*.@(jpg|jpeg|gif|png|css|js|webp)",
+          "source": "**",
           "headers": [
             {
-              "key": "Cache-Control",
-              "value": "max-age=31536000"
-            },
-            {
               "key": "Content-Security-Policy",
-              "value": "default-src 'self'; img-src 'self'; script-src 'none'; style-src 'self'; base-uri 'self'; form-action 'none'; frame-ancestors 'none'; object-src 'none'; connect-src 'self';"
+              "value": "default-src 'self'; img-src 'self' data:; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; font-src 'self' data:; connect-src 'self'; base-uri 'self'; form-action 'self'; frame-ancestors 'none'; object-src 'none';"
             },
             {
               "key": "X-Frame-Options",
@@ -39,16 +25,30 @@
               "value": "max-age=31536000; includeSubDomains; preload"
             },
             {
-              "key": "Content-Encoding",
-              "value": "identity"
-            },
-            {
               "key": "Referrer-Policy",
-              "value": "no-referrer"
+              "value": "strict-origin-when-cross-origin"
             },
             {
               "key": "Permissions-Policy",
               "value": "geolocation=(), microphone=(), camera=(), payment=()"
+            }
+          ]
+        },
+        {
+          "source": "/_next/static/**",
+          "headers": [
+            {
+              "key": "Cache-Control",
+              "value": "public, max-age=31536000, immutable"
+            }
+          ]
+        },
+        {
+          "source": "**/*.@(jpg|jpeg|gif|png|svg|ico|webp)",
+          "headers": [
+            {
+              "key": "Cache-Control",
+              "value": "public, max-age=86400, stale-while-revalidate=604800"
             }
           ]
         }

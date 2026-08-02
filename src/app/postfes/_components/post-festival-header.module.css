@@ -1,0 +1,24 @@
+.navItem {
+  transition: opacity 300ms;
+}
+
+.navList:has(.blogItem:hover) .navItem,
+.navList:has(.blogItem[data-open="true"]) .navItem {
+  opacity: 0.2;
+}
+
+.dropdown {
+  pointer-events: none;
+  visibility: hidden;
+  opacity: 0;
+  transition:
+    opacity 200ms,
+    visibility 200ms;
+}
+
+.blogItem:hover .dropdown,
+.blogItem[data-open="true"] .dropdown {
+  pointer-events: auto;
+  visibility: visible;
+  opacity: 1;
+}

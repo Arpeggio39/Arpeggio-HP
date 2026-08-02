@@ -6,7 +6,7 @@
   --font-sans-jp:
     "Hiragino Maru Gothic ProN", "Hiragino Sans", "Yu Gothic", "YuGothic",
     "Meiryo", sans-serif;
-  --font-geist-mono:
+  --font-system-mono:
     "SFMono-Regular", "SF Mono", "Consolas", "Liberation Mono", monospace;
 }
 
@@ -14,99 +14,71 @@
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --font-sans: var(--font-sans-jp);
-  --font-mono: var(--font-geist-mono);
+  --font-mono: var(--font-system-mono);
 }
 
 @theme {
-  /* Breakpoints (tailwind.config から移行) */
-  --breakpoint-custom: 800px;
-  --breakpoint-isPC: 800px;
+  --breakpoint-content: 800px;
 
-  /* Letter spacing */
   --tracking-wider: 0.1em;
   --tracking-widest: 0.2em;
-  --tracking-lwidest: 0.4em;
+  --tracking-display: 0.4em;
 
-  /* Colors */
-  --color-customBlue: #1E3A8A;
-  --color-mikuBlue: #039393;
-  --color-mikuPink: #e12885;
-  --color-mikuBlack: #373b3e;
-  --color-mikuGray: #bec8d1;
-  --color-mikuGreen: #137a7f;
-  --color-mikuCyan: #c3e5e7;
-  --color-mikuYellow: #fffeec;
-  --color-maitaHoverPurple: #9b509d;
-  --color-maitaPurple: #b960bc;
-  --color-polarisColorFirst: #41404D;
-  --color-polarisColorSecond: #A6AFBC;
-  --color-polarisColorThird: #F1F2F5;
-  --color-polarisColorFourth: #FFF0EA;
-  --color-polarisColorFifth: #F95F66;
-  --color-polarisColorSixth: #FDB571;
-  --color-polarisColorSeventh: #FFE783;
-  --color-polarisColorEighth: #CBFF81;
-  --color-polarisColorNinth: #71E2E8;
-  --color-polarisColorTenth: #5A70DA;
-  --color-polarisColorEleventh: #B571F4;
-  --color-siriusColorFirst: #5E5F5F;
-  --color-siriusColorSecond: #F9E5D2;
-  --color-siriusColorThird: #E5E6E7;
-  --color-siriusColorFourth: #D66260;
-  --color-siriusColorFifth: #D27863;
-  --color-siriusColorSixth: #FFCE84;
-  --color-siriusColorSeventh: #FFBA73;
-  --color-siriusColorEighth: #ACB29C;
-  --color-siriusColorNinth: #A5D4D8;
-  --color-siriusColorTenth: #3A60B2;
-  --color-siriusColorEleventh: #7866AC;
-  --color-capellaColorFirst: #FFA39F;
-  --color-capellaColorSecond: #9FFFFA;
-  --color-capellaColorThird: #FA3D06;
-  --color-capellaColorFourth: #89C9C9;
-  --color-capellaColorFifth: #A09F9F;
-  --color-capellaColorSixth: #C600FF;
-  --color-capellaColorSeventh: #E52BDD;
-  --color-normalColorFirst: #EF3C38;
-  --color-normalColorSecond: #FF983B;
-  --color-normalColorThird: #FFF43F;
-  --color-normalColorFourth: #44CD2B;
-  --color-normalColorFifth: #2DC4CD;
-  --color-normalColorSixth: #324B9C;
-  --color-normalColorSeventh: #9B43CD;
+  --color-miku-blue: #039393;
+  --color-miku-pink: #e12885;
+  --color-miku-black: #373b3e;
+  --color-miku-cyan: #c3e5e7;
+  --color-miku-yellow: #fffeec;
+  --color-maita-purple: #b960bc;
+  --color-maita-purple-hover: #9b509d;
 
-  /* Animations */
-  --animate-fadeInUp: fadeInUp 1s ease-out;
-  --animate-fadeInDown: fadeInDown 1s ease-out;
-  --animate-slideInFromLeft: slideInFromLeft 1.2s ease-out;
-  --animate-slideInFromRight: slideInFromRight 1.2s ease-out;
-  --animate-bouncePulse: bouncePulse 1s infinite;
-  --animate-slide-loop: slide 10s linear infinite;
+  --animate-fade-in-up: fade-in-up 1s ease-out both;
+  --animate-fade-in-down: fade-in-down 1s ease-out both;
+  --animate-bounce-pulse: bounce-pulse 1s infinite;
+  --animate-bounce-jitter: bounce-jitter 0.6s ease-in-out infinite;
 
-  @keyframes fadeInUp {
-    0% { opacity: 0; transform: translateY(20px); }
-    100% { opacity: 1; transform: translateY(0); }
+  @keyframes fade-in-up {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
   }
-  @keyframes fadeInDown {
-    0% { opacity: 0; transform: translateY(-30px); }
-    100% { opacity: 1; transform: translateY(0); }
+
+  @keyframes fade-in-down {
+    from {
+      opacity: 0;
+      transform: translateY(-30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
   }
-  @keyframes slideInFromLeft {
-    0% { opacity: 0; transform: translateX(-50px); }
-    100% { opacity: 1; transform: translateX(0); }
+
+  @keyframes bounce-pulse {
+    0%,
+    100% {
+      opacity: 1;
+      transform: translateY(-25%);
+    }
+    50% {
+      opacity: 0.5;
+      transform: translateY(0);
+    }
   }
-  @keyframes slideInFromRight {
-    0% { opacity: 0; transform: translateX(50px); }
-    100% { opacity: 1; transform: translateX(0); }
-  }
-  @keyframes bouncePulse {
-    0%, 100% { transform: translateY(-25%); opacity: 1; }
-    50% { transform: translateY(0); opacity: 0.5; }
-  }
-  @keyframes slide {
-    0% { transform: translateX(-190%); }
-    50% { transform: translateX(190%); }
-    100% { transform: translateX(190%); }
+
+  @keyframes bounce-jitter {
+    0%,
+    100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-6px);
+    }
   }
 }
 
@@ -135,88 +107,19 @@ img {
   display: block;
 }
 
-.writing-vertical {
-  writing-mode: vertical-rl;
-  text-orientation: mixed;
-}
-
-/* 既存: キラキラ・バウンス・フェードイン */
-@keyframes shine {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0.3; }
-}
-
-.shine-star {
-  background: radial-gradient(circle, white, transparent);
-  animation: shine 2s infinite;
-}
-
-@keyframes bounceJitter {
-  0%, 100% { transform: translate(-50%, 0); }
-  50% { transform: translate(-50%, -6px); }
-}
-
-.animate-bounceJitter {
-  animation: bounceJitter 0.6s ease-in-out infinite;
-}
-
-@keyframes fadeIn {
-  to { opacity: 1; }
-}
-
-/* View Transition: 5周年ページへ「バーが拡大」して遷移 */
-@keyframes view-transition-expand-bar {
-  from { clip-path: inset(0 50% 0 50%); }
-  to { clip-path: inset(0 0 0 0); }
-}
-
-@keyframes view-transition-fade-out {
-  from { opacity: 1; }
-  to { opacity: 0; }
-}
-
-html.view-transition-to-5th ::view-transition-old(root) {
-  animation: view-transition-fade-out 0.35s ease-out forwards;
-}
-
-html.view-transition-to-5th ::view-transition-new(root) {
-  animation: view-transition-expand-bar 0.5s cubic-bezier(0.32, 0.72, 0, 1) forwards;
-}
-
 @media (prefers-reduced-motion: reduce) {
-  ::view-transition-group(*),
-  ::view-transition-old(*),
-  ::view-transition-new(*) {
-    animation: none !important;
+  html {
+    scroll-behavior: auto;
   }
-}
 
-/* グローバル初回ロードインジケーター */
-.global-loading-indicator {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 3px;
-  z-index: 9999;
-  background: linear-gradient(
-    90deg,
-    transparent 0%,
-    rgba(99, 102, 241, 0.8) 50%,
-    transparent 100%
-  );
-  background-size: 200% 100%;
-  animation: global-loading-shimmer 0.8s ease-in-out infinite;
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .global-loading-indicator {
-    animation: none;
-    opacity: 0.6;
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    animation-delay: 0ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    transition-delay: 0ms !important;
   }
-}
-
-@keyframes global-loading-shimmer {
-  0% { background-position: 200% 0; }
-  100% { background-position: -200% 0; }
 }

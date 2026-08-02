@@ -1,60 +1,69 @@
-"use client";
+import type { Metadata } from "next";
+import Image from "next/image";
+import Link from "next/link";
 
-import Header from '@/components/Header';
-import Footer from '@/components/Footer';
-import Image from 'next/image';
-import { members } from '../../const/members/MemberList';
+import { SiteFooter } from "@/components/layout/site-footer";
+import { SiteHeader } from "@/components/layout/site-header.client";
+import { directoryMembers } from "@/data/members";
+
+export const metadata: Metadata = {
+  title: "メンバー",
+  description: "個性豊かなArpeggioメンバーをご紹介します。",
+};
 
 export default function MembersPage() {
-
   return (
     <>
-      <Header bgColor="bg-black" textColor="text-white" />
-      
-      <div className="bg-black text-white min-h-screen">
-        {/* ヒーローセクション */}
-        <div className="flex flex-col items-center justify-center py-20 tracking-lwidest">
-          <h1 className="text-xl md:text-3xl text-center font-bold animate-fadeInUp delay-100">
+      <SiteHeader />
+
+      <main id="main-content" className="min-h-screen bg-black text-white">
+        <div className="flex flex-col items-center justify-center py-20 tracking-display">
+          <h1
+            className="animate-fade-in-up text-center text-xl font-bold md:text-3xl"
+            style={{ animationDelay: "100ms" }}
+          >
             Arpeggio メンバー
           </h1>
-          <p className="text-xl mt-8 text-center mx-10">
+          <p className="mx-10 mt-8 text-center text-xl">
             個性豊かなArpeggioメンバーをご紹介します
           </p>
         </div>
 
-        {/* メンバー一覧 */}
-        <div className="flex flex-col items-center justify-center pb-20 tracking-wider mx-12">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-10">
-            {members.map((member) => (
-              <a 
-                key={member.id} 
-                href={`/members/${member.id}`}
-                className="bg-transparent border border-mikuBlue text-white rounded-lg p-6 transition-transform hover:scale-105 hover:border-mikuPink block"
+        <div className="mx-12 flex flex-col items-center justify-center pb-20 tracking-wider">
+          <div className="mt-10 grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
+            {directoryMembers.map((member, index) => (
+              <Link
+                key={member.id}
+                href={`/members/${member.id}/`}
+                className="block rounded-lg border border-miku-blue bg-transparent p-6 text-white transition-transform hover:scale-105 hover:border-miku-pink"
               >
                 <div className="flex flex-col items-center text-center">
-                  <div className="w-32 h-32 rounded-full overflow-hidden mb-4 border-2 border-mikuBlue">
-                    <Image 
-                      src={`/members/${member.id}.png`} 
+                  <div className="mb-4 h-32 w-32 overflow-hidden rounded-full border-2 border-miku-blue">
+                    <Image
+                      src={member.imageSrc}
                       alt={member.name}
                       width={128}
                       height={128}
-                      className="w-full h-full object-cover"
+                      loading={index === 0 ? "eager" : "lazy"}
+                      className="h-full w-full object-cover"
                     />
                   </div>
-                  <h3 className="text-2xl font-semibold mb-2">{member.name}</h3>
-                  <p className="text-mikuBlue text-lg mb-3">{member.role}</p>
-                  <p className="text-sm leading-relaxed">{member.description}</p>
-                  <div className="mt-4 text-mikuBlue text-sm font-semibold">
+                  <h2 className="mb-2 text-2xl font-semibold">{member.name}</h2>
+                  <p className="mb-3 text-lg text-miku-blue">
+                    {member.directoryRole}
+                  </p>
+                  <p className="text-sm leading-relaxed">{member.summary}</p>
+                  <div className="mt-4 text-sm font-semibold text-miku-blue">
                     詳細を見る →
                   </div>
                 </div>
-              </a>
+              </Link>
             ))}
           </div>
         </div>
-      </div>
+      </main>
 
-      <Footer bgColor="bg-black" textColor="text-white" />
+      <SiteFooter variant="dark" />
     </>
   );
 }
