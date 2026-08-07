@@ -9,6 +9,7 @@
 
 - Next.js App Router / React / TypeScript
 - Tailwind CSS
+- pnpm
 - Static Export (`output: "export"`)
 - Firebase Hosting
 - Node.js 26
@@ -17,8 +18,9 @@
 
 ```bash
 nvm use
-npm ci
-npm run dev
+corepack enable
+pnpm install --frozen-lockfile
+pnpm run dev
 ```
 
 開発サーバーは <http://localhost:3004> で起動します。
@@ -26,13 +28,13 @@ npm run dev
 ## コマンド
 
 ```bash
-npm run dev          # 開発サーバー
-npm run lint         # ESLint
-npm run typecheck    # TypeScript
-npm run format       # Prettierで自動整形
-npm run format:check # 整形差分の検査
-npm run build        # out/へ静的サイトを出力
-npm run audit        # 依存パッケージの脆弱性検査
+pnpm run dev          # 開発サーバー
+pnpm run lint         # ESLint
+pnpm run typecheck    # TypeScript
+pnpm run format       # Prettierで自動整形
+pnpm run format:check # 整形差分の検査
+pnpm run build        # out/へ静的サイトを出力
+pnpm run audit        # 依存パッケージの脆弱性検査
 ```
 
 ## ディレクトリ構成
@@ -62,4 +64,4 @@ src/
 - 琵音マイタ音源: `src/data/maita.ts`
 - 5周年企画: `src/data/anniversary.ts`
 
-`npm run build` が成功すると、Firebase Hosting に配置できる完全な静的サイトが `out/` に生成されます。
+`pnpm run build` が成功すると、Firebase Hosting に配置できる完全な静的サイトが `out/` に生成されます。
