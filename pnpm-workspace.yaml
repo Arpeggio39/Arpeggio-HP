@@ -1,0 +1,9 @@
+packages:
+  - "."
+
+overrides:
+  postcss: 8.5.25
+  sharp: 0.35.3
+
+ignoreScripts: true
+minimumReleaseAge: 2880
