@@ -56,6 +56,17 @@ export const members = [
     listed: false,
     socialLinks: [],
   },
+  {
+    id: "taka1565",
+    name: "taka",
+    role: "ダンス班,映像班",
+    directoryRole: "ダンス,映像",
+    summary: "ダンスやら映像やらやってます",
+    biography: "ダンスやら映像やらやってます",
+    imageSrc: "/images/members/taka1565.webp",
+    listed: true,
+    socialLinks: [],
+  },
 ] as const satisfies readonly Member[];
 
 export const directoryMembers = members.filter((member) => member.listed);
