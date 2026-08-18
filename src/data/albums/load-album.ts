@@ -4,6 +4,8 @@ import type { Album } from "./types";
 type AlbumLoader = () => Promise<Album>;
 
 const albumLoaders = {
+  "20250914": () =>
+    import("./album-2025-09-14").then((module) => module.album20250914),
   "20240923": () =>
     import("./album-2024-09-23").then((module) => module.album20240923),
   "20240302": () =>
