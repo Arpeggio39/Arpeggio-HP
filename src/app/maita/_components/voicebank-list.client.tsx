@@ -121,8 +121,10 @@ export function VoicebankList() {
             <div className="flex flex-col items-center justify-center py-3 tracking-wider sm:py-4">
               <div className="flex flex-col items-start space-y-3 sm:flex-row sm:space-y-0 sm:space-x-4">
                 <div
-                  className={`flex flex-row items-center space-x-2 sm:space-x-0 md:space-x-4 ${
-                    voicebank.design ? "" : "w-full justify-center"
+                  className={`flex shrink-0 flex-row items-center space-x-2 sm:space-x-0 md:space-x-4 ${
+                    voicebank.design
+                      ? ""
+                      : "w-full justify-center sm:w-auto sm:justify-start"
                   }`}
                 >
                   {voicebank.design ? (
@@ -150,11 +152,7 @@ export function VoicebankList() {
                     width={voicebank.portrait.width}
                     height={voicebank.portrait.height}
                     sizes="(min-width: 768px) 224px, 50vw"
-                    className={`h-auto object-contain md:shrink-0 ${
-                      voicebank.design
-                        ? "w-1/2 md:w-56"
-                        : "w-full max-w-xs md:max-w-sm"
-                    }`}
+                    className="h-auto w-1/2 object-contain md:w-56 md:shrink-0"
                   />
                 </div>
 
@@ -165,11 +163,7 @@ export function VoicebankList() {
                   <p className="text-sm leading-relaxed md:text-base">
                     {voicebank.description}
                   </p>
-                  <div
-                    className={`flex w-full flex-row items-start justify-center gap-2 md:gap-4 ${
-                      voicebank.demoSongUrl ? "" : "sm:justify-start"
-                    }`}
-                  >
+                  <div className="flex w-full flex-row items-start justify-center gap-2 md:gap-4">
                     {voicebank.demoSongUrl ? (
                       <a
                         href={voicebank.demoSongUrl}
@@ -185,9 +179,7 @@ export function VoicebankList() {
                     <button
                       type="button"
                       onClick={() => openDownload(voicebank)}
-                      className={`flex items-center justify-center rounded-lg border-2 border-transparent bg-maita-purple px-4 py-2.5 text-sm font-bold text-white! transition-colors hover:bg-maita-purple-hover sm:py-3 md:px-6 md:text-base ${
-                        voicebank.demoSongUrl ? "flex-1" : "w-full sm:w-auto"
-                      }`}
+                      className="flex flex-1 items-center justify-center rounded-lg border-2 border-transparent bg-maita-purple px-4 py-2.5 text-sm font-bold text-white! transition-colors hover:bg-maita-purple-hover sm:py-3 md:px-6 md:text-base"
                     >
                       <DownloadIcon className="mr-1.5 size-5 sm:mr-2" />
                       ダウンロード
