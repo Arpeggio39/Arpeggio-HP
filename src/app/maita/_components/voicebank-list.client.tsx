@@ -120,23 +120,29 @@ export function VoicebankList() {
           >
             <div className="flex flex-col items-center justify-center py-3 tracking-wider sm:py-4">
               <div className="flex flex-col items-start space-y-3 sm:flex-row sm:space-y-0 sm:space-x-4">
-                <div className="flex flex-row items-center space-x-2 sm:space-x-0 md:space-x-4">
-                  <button
-                    type="button"
-                    onClick={() => setModal({ type: "design", voicebank })}
-                    className="relative w-1/2 cursor-zoom-in rounded-2xl focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-maita-purple md:w-auto md:shrink-0"
-                    aria-label={`${voicebank.name}のデザイン画像を拡大`}
-                  >
-                    <Image
-                      src={voicebank.design.src}
-                      alt={`${voicebank.name}の3視点ポーズ`}
-                      width={voicebank.design.width}
-                      height={voicebank.design.height}
-                      sizes="(min-width: 768px) 320px, 50vw"
-                      className={`${styles.borderCycle} h-auto w-full rounded-2xl border-4 object-cover shadow-2xl transition-transform duration-500 hover:scale-105 md:w-80 md:max-w-none`}
-                      style={getBorderAnimationStyle(voicebank.accentColors)}
-                    />
-                  </button>
+                <div
+                  className={`flex flex-row items-center space-x-2 sm:space-x-0 md:space-x-4 ${
+                    voicebank.design ? "" : "w-full justify-center"
+                  }`}
+                >
+                  {voicebank.design ? (
+                    <button
+                      type="button"
+                      onClick={() => setModal({ type: "design", voicebank })}
+                      className="relative w-1/2 cursor-zoom-in rounded-2xl focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-maita-purple md:w-auto md:shrink-0"
+                      aria-label={`${voicebank.name}のデザイン画像を拡大`}
+                    >
+                      <Image
+                        src={voicebank.design.src}
+                        alt={`${voicebank.name}の3視点ポーズ`}
+                        width={voicebank.design.width}
+                        height={voicebank.design.height}
+                        sizes="(min-width: 768px) 320px, 50vw"
+                        className={`${styles.borderCycle} h-auto w-full rounded-2xl border-4 object-cover shadow-2xl transition-transform duration-500 hover:scale-105 md:w-80 md:max-w-none`}
+                        style={getBorderAnimationStyle(voicebank.accentColors)}
+                      />
+                    </button>
+                  ) : null}
 
                   <Image
                     src={voicebank.portrait.src}
@@ -144,7 +150,11 @@ export function VoicebankList() {
                     width={voicebank.portrait.width}
                     height={voicebank.portrait.height}
                     sizes="(min-width: 768px) 224px, 50vw"
-                    className="h-auto w-1/2 object-contain md:w-56 md:shrink-0"
+                    className={`h-auto object-contain md:shrink-0 ${
+                      voicebank.design
+                        ? "w-1/2 md:w-56"
+                        : "w-full max-w-xs md:max-w-sm"
+                    }`}
                   />
                 </div>
 
@@ -155,7 +165,11 @@ export function VoicebankList() {
                   <p className="text-sm leading-relaxed md:text-base">
                     {voicebank.description}
                   </p>
-                  <div className="flex w-full flex-row items-start justify-center gap-2 md:gap-4">
+                  <div
+                    className={`flex w-full flex-row items-start justify-center gap-2 md:gap-4 ${
+                      voicebank.demoSongUrl ? "" : "sm:justify-start"
+                    }`}
+                  >
                     {voicebank.demoSongUrl ? (
                       <a
                         href={voicebank.demoSongUrl}
@@ -171,7 +185,9 @@ export function VoicebankList() {
                     <button
                       type="button"
                       onClick={() => openDownload(voicebank)}
-                      className="flex flex-1 items-center justify-center rounded-lg border-2 border-transparent bg-maita-purple px-4 py-2.5 text-sm font-bold text-white! transition-colors hover:bg-maita-purple-hover sm:py-3 md:px-6 md:text-base"
+                      className={`flex items-center justify-center rounded-lg border-2 border-transparent bg-maita-purple px-4 py-2.5 text-sm font-bold text-white! transition-colors hover:bg-maita-purple-hover sm:py-3 md:px-6 md:text-base ${
+                        voicebank.demoSongUrl ? "flex-1" : "w-full sm:w-auto"
+                      }`}
                     >
                       <DownloadIcon className="mr-1.5 size-5 sm:mr-2" />
                       ダウンロード
@@ -209,31 +225,7 @@ export function VoicebankList() {
           }}
           onClose={resetModal}
         >
-          {modal.type === "design" ? (
-            <div className="relative max-h-[calc(100dvh-2rem)] overflow-auto rounded-lg bg-white p-4 shadow-lg">
-              <h2 id="design-dialog-title" className="sr-only">
-                {modal.voicebank.name}のデザイン画像
-              </h2>
-              <form method="dialog">
-                <button
-                  type="submit"
-                  className="absolute top-3 left-4 rounded px-3 py-2 text-black transition-colors hover:bg-gray-100"
-                >
-                  閉じる
-                </button>
-              </form>
-              <span className="absolute right-2 bottom-2 text-gray-500">
-                Designed by {modal.voicebank.illustrator}
-              </span>
-              <Image
-                src={modal.voicebank.design.src}
-                alt={`${modal.voicebank.name}のデザイン画像`}
-                width={modal.voicebank.design.width}
-                height={modal.voicebank.design.height}
-                className="m-8 max-h-[80vh] w-auto object-contain"
-              />
-            </div>
-          ) : (
+          {modal.type === "download" ? (
             <div className="rounded-lg bg-white p-6">
               <h2
                 id="download-dialog-title"
@@ -297,7 +289,31 @@ export function VoicebankList() {
                 </button>
               </div>
             </div>
-          )}
+          ) : modal.voicebank.design ? (
+            <div className="relative max-h-[calc(100dvh-2rem)] overflow-auto rounded-lg bg-white p-4 shadow-lg">
+              <h2 id="design-dialog-title" className="sr-only">
+                {modal.voicebank.name}のデザイン画像
+              </h2>
+              <form method="dialog">
+                <button
+                  type="submit"
+                  className="absolute top-3 left-4 rounded px-3 py-2 text-black transition-colors hover:bg-gray-100"
+                >
+                  閉じる
+                </button>
+              </form>
+              <span className="absolute right-2 bottom-2 text-gray-500">
+                Designed by {modal.voicebank.illustrator}
+              </span>
+              <Image
+                src={modal.voicebank.design.src}
+                alt={`${modal.voicebank.name}のデザイン画像`}
+                width={modal.voicebank.design.width}
+                height={modal.voicebank.design.height}
+                className="m-8 max-h-[80vh] w-auto object-contain"
+              />
+            </div>
+          ) : null}
         </dialog>
       ) : null}
     </>

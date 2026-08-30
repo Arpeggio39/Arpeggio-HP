@@ -11,7 +11,7 @@ export type Voicebank = Readonly<{
   illustrator: string;
   accentColors: readonly string[];
   portrait: MaitaImage;
-  design: MaitaImage;
+  design?: MaitaImage;
   demoSongUrl?: string;
   downloadUrl: string;
 }>;
@@ -185,6 +185,29 @@ export const voicebanks: readonly Voicebank[] = [
     demoSongUrl: "https://www.nicovideo.jp/watch/sm44330136",
     downloadUrl:
       "https://github.com/Arpeggio39/Arpeggio-HP/releases/download/voicebanks-v1/maita-polaris.zip",
+  },
+  {
+    id: "COEIROINK",
+    name: "琵音マイタ COEIROINK音源",
+    description:
+      "COEIROINKで使用できるMYCOEIROINK用音声モデルです。導入方法はCOEIROINK公式サイトをご確認ください。",
+    illustrator: "GA-CHAN",
+    accentColors: [
+      "#ef3c38",
+      "#ff983b",
+      "#fff43f",
+      "#44cd2b",
+      "#2dc4cd",
+      "#324b9c",
+      "#9b43cd",
+    ],
+    portrait: {
+      src: "/images/maita/COEIROINK/琵音マイタ1_通常.png",
+      width: 800,
+      height: 1200,
+    },
+    downloadUrl:
+      "https://github.com/Arpeggio39/MaitaCOEIROINK/releases/download/v1.6.0/bionmaita-1.0.0.zip",
   },
   {
     id: "Extra",
