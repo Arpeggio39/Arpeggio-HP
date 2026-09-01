@@ -26,6 +26,7 @@ import { album20131126 } from "./album-2013-11-26";
 import { album20121126 } from "./album-2012-11-26";
 
 export const albums = [
+  album20260426,
   album20250914,
   album20240923,
   album20240302,
