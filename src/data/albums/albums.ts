@@ -1,4 +1,5 @@
 import type { Album } from "./types";
+import { album20260426 } from "./album-2026-04-26";
 import { album20250914 } from "./album-2025-09-14";
 import { album20240923 } from "./album-2024-09-23";
 import { album20240302 } from "./album-2024-03-02";
@@ -25,6 +26,7 @@ import { album20131126 } from "./album-2013-11-26";
 import { album20121126 } from "./album-2012-11-26";
 
 export const albums = [
+  album20260426,
   album20250914,
   album20240923,
   album20240302,
