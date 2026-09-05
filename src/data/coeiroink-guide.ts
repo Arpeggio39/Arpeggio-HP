@@ -36,7 +36,7 @@ export const coeiroinkDownloads = {
   releasesPage: "https://github.com/Arpeggio39/MaitaCOEIROINK/releases",
 } as const;
 
-const guideImageBase = "/images/maita/coeiroink/guide";
+const guideImageBase = "/images/maita/COEIROINK/guide";
 
 function img(
   filename: string,
