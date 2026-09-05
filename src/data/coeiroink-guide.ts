@@ -74,7 +74,7 @@ const coeiroinkDownloadDescriptions: Record<GuidePlatform, string> = {
 export function getDownloadItems(
   platform: GuidePlatform,
 ): readonly GuideDownloadItem[] {
-  return [
+  const items: GuideDownloadItem[] = [
     {
       id: "coeiroink",
       name: "COEIROINK 本体",
@@ -93,7 +93,10 @@ export function getDownloadItems(
       buttonLabel: "ダウンロード",
       tracksDownload: true,
     },
-    {
+  ];
+
+  if (platform === "windows") {
+    items.push({
       id: "open-maita",
       name: "OpenMaita（任意）",
       description:
@@ -103,8 +106,10 @@ export function getDownloadItems(
       buttonLabel: "ダウンロード",
       note: "最新版は GitHub の Releases ページでも確認できます。",
       tracksDownload: true,
-    },
-  ];
+    });
+  }
+
+  return items;
 }
 
 export const coeiroinkGuideSteps: Record<GuidePlatform, readonly GuideStep[]> =
