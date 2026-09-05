@@ -100,11 +100,11 @@ export function getDownloadItems(
       id: "open-maita",
       name: "OpenMaita（任意）",
       description:
-        "COEIROINK で琵音マイタのナレーションを作るための Windows アプリです。GitHub から入手できます。",
+        "COEIROINK でマイタのナレーションを、もっと便利に・簡単に作れるようにした Windows 用アプリです。",
       href: coeiroinkDownloads.openMaita,
       external: false,
       buttonLabel: "ダウンロード",
-      note: "最新版は GitHub の Releases ページでも確認できます。",
+      note: "最新版はダウンロードページでも確認できます。",
       tracksDownload: true,
     });
   }
@@ -136,20 +136,8 @@ export const coeiroinkGuideSteps: Record<GuidePlatform, readonly GuideStep[]> =
         ],
       },
       {
-        title: "③ 音声パックをダウンロード",
-        body: "GitHub から bionmaita-1.0.0.zip をダウンロードし、ZIP を解凍してください。",
-        images: [
-          img(
-            "github-release-openmaita.png",
-            "GitHub のダウンロードページ",
-            2860,
-            2004,
-          ),
-        ],
-      },
-      {
-        title: "④ speaker_info に音声パックを入れる",
-        body: "② で開いた COEIROINK フォルダー内の speaker_info フォルダーを開き、解凍した bionmaita-1.0.0 フォルダーをその中に入れます。",
+        title: "③ speaker_info に音声パックを入れる",
+        body: "② で開いた COEIROINK フォルダー内の speaker_info フォルダーを開き、ページ上部でダウンロードして解凍した bionmaita-1.0.0 フォルダーをその中に入れます。",
         images: [
           img("image2.png", "speaker_info フォルダーを開く", 960, 1152),
           img(
@@ -162,7 +150,7 @@ export const coeiroinkGuideSteps: Record<GuidePlatform, readonly GuideStep[]> =
         note: "もともと入っている「つくよみちゃん」は残しても削除しても大丈夫です。",
       },
       {
-        title: "⑤ COEIROINK を起動",
+        title: "④ COEIROINK を起動",
         body: "1 つ上のフォルダーに戻り、COEIROINKv2.exe を実行します。この exe はフォルダーの外に移動しないでください。",
         images: [
           img("image16.png", "COEIROINK フォルダー内の exe", 1125, 634),
@@ -170,7 +158,7 @@ export const coeiroinkGuideSteps: Record<GuidePlatform, readonly GuideStep[]> =
         ],
       },
       {
-        title: "⑥ マイタに切り替え",
+        title: "⑤ マイタに切り替え",
         body: "画面上部のキャラクターアイコン（初期状態ではつくよみちゃん）を押すと、琵音マイタに切り替えられます。",
         images: [
           img("image11.png", "キャラクター切り替え", 1000, 711),
@@ -196,20 +184,8 @@ export const coeiroinkGuideSteps: Record<GuidePlatform, readonly GuideStep[]> =
         note: "設定 → プライバシーとセキュリティ →「このまま開く」を押すと起動できます。",
       },
       {
-        title: "③ 音声パックをダウンロード",
-        body: "GitHub から bionmaita-1.0.0.zip をダウンロードし、ZIP を解凍してください。",
-        images: [
-          img(
-            "github-release-openmaita.png",
-            "GitHub のダウンロードページ",
-            2860,
-            2004,
-          ),
-        ],
-      },
-      {
-        title: "④ speaker_info に音声パックを入れる",
-        body: "アプリケーション内の COEIROINKv2.app を右クリック（2 本指クリック）し、「パッケージの内容を表示」→ Contents/MacOS/speaker_info を開き、bionmaita-1.0.0 フォルダーを入れます。",
+        title: "③ speaker_info に音声パックを入れる",
+        body: "アプリケーション内の COEIROINKv2.app を右クリック（2 本指クリック）し、「パッケージの内容を表示」→ Contents/MacOS/speaker_info を開き、ページ上部でダウンロードして解凍した bionmaita-1.0.0 フォルダーを入れます。",
         images: [
           img("image14.png", "COEIROINK.app のパッケージ内容を表示", 1130, 548),
           img(
@@ -221,7 +197,7 @@ export const coeiroinkGuideSteps: Record<GuidePlatform, readonly GuideStep[]> =
         ],
       },
       {
-        title: "⑤ マイタに切り替え",
+        title: "④ マイタに切り替え",
         body: "COEIROINK を起動し、画面上部のキャラクターアイコンから琵音マイタに切り替えます。",
         images: [
           img("image13.png", "キャラクター切り替え（Mac）", 1112, 832),
