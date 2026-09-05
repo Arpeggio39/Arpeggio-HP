@@ -4,12 +4,14 @@ import Image from "next/image";
 import Link from "next/link";
 import { useSyncExternalStore, useState } from "react";
 
-import { DownloadIcon } from "@/components/ui/icons";
+import { CheckIcon, DownloadIcon } from "@/components/ui/icons";
 import {
   coeiroinkDownloads,
   coeiroinkGuideIntro,
   getDownloadItems,
   getInstallSteps,
+  type GuideDownloadItem,
+  type GuideDownloadItemId,
   type GuidePlatform,
   type GuideStep,
 } from "@/data/coeiroink-guide";
@@ -85,11 +87,106 @@ function GuideStepCard({
   );
 }
 
+type DownloadCardProps = Readonly<{
+  item: GuideDownloadItem;
+  isDownloaded: boolean;
+  onDownload: (id: GuideDownloadItemId, href: string) => void;
+}>;
+
+function DownloadCard({ item, isDownloaded, onDownload }: DownloadCardProps) {
+  if (item.tracksDownload && isDownloaded) {
+    return (
+      <article className="rounded-2xl bg-white p-5 shadow-sm sm:p-6">
+        <h3 className="text-lg font-bold">{item.name}</h3>
+        <p className="mt-2 text-sm leading-relaxed text-gray-700 sm:text-base">
+          {item.description}
+        </p>
+        {item.note ? (
+          <p className="mt-2 text-xs text-gray-500 sm:text-sm">
+            {item.note}{" "}
+            <a
+              href={coeiroinkDownloads.releasesPage}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-miku-blue underline"
+            >
+              Releases ページ
+            </a>
+          </p>
+        ) : null}
+        <button
+          type="button"
+          disabled
+          aria-label={`${item.name}をダウンロード済み`}
+          className="mt-4 inline-flex cursor-default items-center rounded-lg bg-green-600 px-5 py-2.5 text-sm font-bold text-white! sm:text-base"
+        >
+          <CheckIcon className="mr-2 size-5" />
+          ダウンロード済み
+        </button>
+      </article>
+    );
+  }
+
+  if (item.tracksDownload) {
+    return (
+      <article className="rounded-2xl bg-white p-5 shadow-sm sm:p-6">
+        <h3 className="text-lg font-bold">{item.name}</h3>
+        <p className="mt-2 text-sm leading-relaxed text-gray-700 sm:text-base">
+          {item.description}
+        </p>
+        {item.note ? (
+          <p className="mt-2 text-xs text-gray-500 sm:text-sm">
+            {item.note}{" "}
+            <a
+              href={coeiroinkDownloads.releasesPage}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-miku-blue underline"
+            >
+              Releases ページ
+            </a>
+          </p>
+        ) : null}
+        <button
+          type="button"
+          onClick={() => onDownload(item.id, item.href)}
+          className="mt-4 inline-flex items-center rounded-lg bg-maita-purple px-5 py-2.5 text-sm font-bold text-white! transition-colors hover:bg-maita-purple-hover sm:text-base"
+        >
+          <DownloadIcon className="mr-2 size-5" />
+          {item.buttonLabel}
+        </button>
+      </article>
+    );
+  }
+
+  return (
+    <article className="rounded-2xl bg-white p-5 shadow-sm sm:p-6">
+      <h3 className="text-lg font-bold">{item.name}</h3>
+      <p className="mt-2 text-sm leading-relaxed text-gray-700 sm:text-base">
+        {item.description}
+      </p>
+      <a
+        href={item.href}
+        {...(item.external
+          ? { target: "_blank", rel: "noopener noreferrer" }
+          : {})}
+        className="mt-4 inline-flex items-center rounded-lg bg-maita-purple px-5 py-2.5 text-sm font-bold text-white! transition-colors hover:bg-maita-purple-hover sm:text-base"
+      >
+        <DownloadIcon className="mr-2 size-5" />
+        {item.buttonLabel}
+      </a>
+    </article>
+  );
+}
+
 export function CoeiroinkGuideContent() {
   const detectedPlatform = useDetectedPlatform();
   const [platformOverride, setPlatformOverride] =
     useState<GuidePlatform | null>(null);
   const platform = platformOverride ?? getInitialPlatform(detectedPlatform);
+  const [downloadedIds, setDownloadedIds] = useState<
+    ReadonlySet<GuideDownloadItemId>
+  >(() => new Set());
 
   const downloadItems = getDownloadItems(platform);
   const steps = getInstallSteps(platform);
@@ -97,6 +194,11 @@ export function CoeiroinkGuideContent() {
     platformOverride === null &&
     detectedPlatform !== "unknown" &&
     platform === detectedPlatform;
+
+  function handleDownload(id: GuideDownloadItemId, href: string) {
+    window.open(href, "_blank", "noopener,noreferrer");
+    setDownloadedIds((current) => new Set([...current, id]));
+  }
 
   return (
     <main id="main-content" className="bg-gray-100 text-miku-black">
@@ -128,6 +230,9 @@ export function CoeiroinkGuideContent() {
           </p>
           <p className="mt-3 text-sm leading-relaxed text-gray-600 sm:text-base">
             ⚠️ {coeiroinkGuideIntro.aboutNote}
+          </p>
+          <p className="mt-3 text-sm leading-relaxed sm:text-base">
+            {coeiroinkGuideIntro.aboutExtra}
           </p>
         </section>
 
@@ -175,38 +280,12 @@ export function CoeiroinkGuideContent() {
           </h2>
           <div className="mt-4 flex flex-col gap-4">
             {downloadItems.map((item) => (
-              <article
+              <DownloadCard
                 key={item.id}
-                className="rounded-2xl bg-white p-5 shadow-sm sm:p-6"
-              >
-                <h3 className="text-lg font-bold">{item.name}</h3>
-                <p className="mt-2 text-sm leading-relaxed text-gray-700 sm:text-base">
-                  {item.description}
-                </p>
-                {item.note ? (
-                  <p className="mt-2 text-xs text-gray-500 sm:text-sm">
-                    {item.note}{" "}
-                    <a
-                      href={coeiroinkDownloads.releasesPage}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-miku-blue underline"
-                    >
-                      Releases ページ
-                    </a>
-                  </p>
-                ) : null}
-                <a
-                  href={item.href}
-                  {...(item.external
-                    ? { target: "_blank", rel: "noopener noreferrer" }
-                    : {})}
-                  className="mt-4 inline-flex items-center rounded-lg bg-maita-purple px-5 py-2.5 text-sm font-bold text-white! transition-colors hover:bg-maita-purple-hover sm:text-base"
-                >
-                  <DownloadIcon className="mr-2 size-5" />
-                  {item.buttonLabel}
-                </a>
-              </article>
+                item={item}
+                isDownloaded={downloadedIds.has(item.id)}
+                onDownload={handleDownload}
+              />
             ))}
           </div>
         </section>
