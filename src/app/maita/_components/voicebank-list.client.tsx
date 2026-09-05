@@ -4,7 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useRef, useState, type CSSProperties } from "react";
 
-import { DownloadIcon, MusicNoteIcon } from "@/components/ui/icons";
+import { BookOpenIcon, DownloadIcon, MusicNoteIcon } from "@/components/ui/icons";
 import { voicebanks, type Voicebank } from "@/data/maita";
 
 import styles from "./maita.module.css";
@@ -163,7 +163,7 @@ export function VoicebankList() {
                   <p className="text-sm leading-relaxed md:text-base">
                     {voicebank.description}
                   </p>
-                  <div className="flex w-full flex-row items-start justify-center gap-2 md:gap-4">
+                  <div className="flex w-full flex-col items-stretch justify-center gap-2 sm:flex-row md:gap-4">
                     {voicebank.demoSongUrl ? (
                       <a
                         href={voicebank.demoSongUrl}
@@ -174,6 +174,16 @@ export function VoicebankList() {
                         <MusicNoteIcon className="mr-1.5 size-5 sm:mr-2" />
                         デモソング
                       </a>
+                    ) : null}
+
+                    {voicebank.id === "COEIROINK" ? (
+                      <Link
+                        href="/maita/coeiroink/"
+                        className="flex flex-1 items-center justify-center rounded-lg border-2 border-maita-purple bg-white px-4 py-2.5 text-sm font-bold text-maita-purple! transition-colors hover:bg-gray-50 sm:py-3 md:px-6 md:text-base"
+                      >
+                        <BookOpenIcon className="mr-1.5 size-5 sm:mr-2" />
+                        導入方法を見る
+                      </Link>
                     ) : null}
 
                     <button

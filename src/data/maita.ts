@@ -190,7 +190,7 @@ export const voicebanks: readonly Voicebank[] = [
     id: "COEIROINK",
     name: "琵音マイタ COEIROINK音源",
     description:
-      "COEIROINKで使用できるMYCOEIROINK用音声モデルです。導入方法はCOEIROINK公式サイトをご確認ください。",
+      "COEIROINKで使用できるMYCOEIROINK用音声モデルです。導入方法は下のボタンからご確認ください。",
     illustrator: "GA-CHAN",
     accentColors: [
       "#ef3c38",
@@ -207,7 +207,7 @@ export const voicebanks: readonly Voicebank[] = [
       height: 1200,
     },
     downloadUrl:
-      "https://github.com/Arpeggio39/MaitaCOEIROINK/releases/download/v1.6.0/bionmaita-1.0.0.zip",
+      "https://github.com/Arpeggio39/MaitaCOEIROINK/releases/latest/download/bionmaita-1.0.0.zip",
   },
   {
     id: "Extra",
