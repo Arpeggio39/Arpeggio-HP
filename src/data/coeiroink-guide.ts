@@ -14,14 +14,17 @@ export type GuideStep = Readonly<{
 
 export type GuidePlatform = "windows" | "mac";
 
+export type GuideDownloadItemId = "coeiroink" | "voice-pack" | "open-maita";
+
 export type GuideDownloadItem = Readonly<{
-  id: "coeiroink" | "voice-pack" | "open-maita";
+  id: GuideDownloadItemId;
   name: string;
   description: string;
   href: string;
   external: boolean;
   buttonLabel: string;
   note?: string;
+  tracksDownload?: boolean;
 }>;
 
 export const coeiroinkDownloads = {
@@ -54,9 +57,11 @@ export const coeiroinkGuideIntro = {
   subtitle: "琵音マイタの音声モデルを COEIROINK で使うための手順です。",
   aboutTitle: "COEIROINK とは？",
   aboutBody:
-    "人の声を AI が学習し、テキストを入力するだけで自然なナレーションを作れるソフトです。琵音マイタの COEIROINK 音源はナレーション向けで、UTAU 版マイタとは声の雰囲気が異なります。",
+    "人間（六素先輩）の声をAIが学習し、まるで本人が喋っているかのような流暢さでAIに歌ってもらうことができるソフトウェアです！",
   aboutNote:
-    "自由に日本語を喋らせることは可能ですが、悪用は絶対にしないでください。",
+    "自由に日本語を喋ってもらうことは可能ですが...もちろん悪用ダメゼッタイ...☠️",
+  aboutExtra:
+    "あくまでナレーション特化なので、UTAUのマイタとは声の雰囲気が異なります...👀",
   downloadTitle: "まず用意するもの",
 } as const;
 
@@ -69,7 +74,7 @@ const coeiroinkDownloadDescriptions: Record<GuidePlatform, string> = {
 export function getDownloadItems(
   platform: GuidePlatform,
 ): readonly GuideDownloadItem[] {
-  const items: GuideDownloadItem[] = [
+  return [
     {
       id: "coeiroink",
       name: "COEIROINK 本体",
@@ -86,23 +91,20 @@ export function getDownloadItems(
       href: coeiroinkDownloads.voicePack,
       external: false,
       buttonLabel: "ダウンロード",
+      tracksDownload: true,
     },
-  ];
-
-  if (platform === "windows") {
-    items.push({
+    {
       id: "open-maita",
       name: "OpenMaita（任意）",
       description:
-        "マイタのナレーション作成を補助する Windows アプリです。COEIROINK 本体とは別に、GitHub から入手できます。",
+        "COEIROINK で琵音マイタのナレーションを作るための Windows アプリです。GitHub から入手できます。",
       href: coeiroinkDownloads.openMaita,
       external: false,
       buttonLabel: "ダウンロード",
       note: "最新版は GitHub の Releases ページでも確認できます。",
-    });
-  }
-
-  return items;
+      tracksDownload: true,
+    },
+  ];
 }
 
 export const coeiroinkGuideSteps: Record<GuidePlatform, readonly GuideStep[]> =
