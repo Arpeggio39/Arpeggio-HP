@@ -110,7 +110,7 @@ function DownloadCard({ item, isDownloaded, onDownload }: DownloadCardProps) {
               rel="noopener noreferrer"
               className="text-miku-blue underline"
             >
-              Releases ページ
+              ダウンロードページ
             </a>
           </p>
         ) : null}
@@ -143,7 +143,7 @@ function DownloadCard({ item, isDownloaded, onDownload }: DownloadCardProps) {
               rel="noopener noreferrer"
               className="text-miku-blue underline"
             >
-              Releases ページ
+              ダウンロードページ
             </a>
           </p>
         ) : null}

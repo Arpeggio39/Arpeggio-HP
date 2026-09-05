@@ -100,11 +100,11 @@ export function getDownloadItems(
       id: "open-maita",
       name: "OpenMaita（任意）",
       description:
-        "COEIROINK でマイタのナレーションを、もっと便利に・簡単に作れるようにした Windows 用アプリです。GitHub から入手できます。",
+        "COEIROINK でマイタのナレーションを、もっと便利に・簡単に作れるようにした Windows 用アプリです。",
       href: coeiroinkDownloads.openMaita,
       external: false,
       buttonLabel: "ダウンロード",
-      note: "最新版は GitHub の Releases ページでも確認できます。",
+      note: "最新版はダウンロードページでも確認できます。",
       tracksDownload: true,
     });
   }
