@@ -4,7 +4,11 @@ import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useRef, useState, type CSSProperties } from "react";
 
-import { BookOpenIcon, DownloadIcon, MusicNoteIcon } from "@/components/ui/icons";
+import {
+  BookOpenIcon,
+  DownloadIcon,
+  MusicNoteIcon,
+} from "@/components/ui/icons";
 import { voicebanks, type Voicebank } from "@/data/maita";
 
 import styles from "./maita.module.css";

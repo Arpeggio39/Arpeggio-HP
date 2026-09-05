@@ -87,9 +87,8 @@ function GuideStepCard({
 
 export function CoeiroinkGuideContent() {
   const detectedPlatform = useDetectedPlatform();
-  const [platformOverride, setPlatformOverride] = useState<GuidePlatform | null>(
-    null,
-  );
+  const [platformOverride, setPlatformOverride] =
+    useState<GuidePlatform | null>(null);
   const platform = platformOverride ?? getInitialPlatform(detectedPlatform);
 
   const downloadItems = getDownloadItems(platform);
