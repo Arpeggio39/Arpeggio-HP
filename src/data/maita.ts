@@ -23,19 +23,13 @@ export type ProfileItem = Readonly<{
 
 export const maitaProfile = [
   { label: "名前", value: "琵音 マイタ" },
-  { label: "読み", value: "びおん まいた" },
   { label: "性別", value: "女性" },
   { label: "学年", value: "同志社大学3回生" },
-  { label: "年齢", value: "秘密" },
   { label: "誕生日", value: "5月17日" },
   { label: "身長", value: "165cm" },
   { label: "体重", value: "秘密" },
-  { label: "髪型", value: "黒地の七色メッシュのボブ" },
-  { label: "目", value: "紅眼" },
   { label: "一人称", value: "僕" },
   { label: "口癖", value: "「どうすれば......」" },
-  { label: "好きなもの", value: "創作活動(Arpeggioで行っている活動全て)" },
-  { label: "嫌いなもの", value: "課題" },
 ] as const satisfies readonly ProfileItem[];
 
 export const voicebanks: readonly Voicebank[] = [
@@ -202,7 +196,7 @@ export const voicebanks: readonly Voicebank[] = [
       "#9b43cd",
     ],
     portrait: {
-      src: "/images/maita/COEIROINK/琵音マイタ1_通常.png",
+      src: "/images/maita/standing/01-default.png",
       width: 800,
       height: 1200,
     },
