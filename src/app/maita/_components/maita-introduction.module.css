@@ -1,0 +1,218 @@
+.section {
+  /* Each layer travels from below its resting position, through zero,
+     to above it. Portrait compensates for its moving parent. */
+  --scroll-offset: 0px;
+  --backdrop-rate: -0.3;
+  --panel-rate: -0.45;
+  --portrait-rate: -0.7;
+  position: relative;
+  isolation: isolate;
+  overflow: clip;
+  background: #fff;
+  padding: 100px 5%;
+  color: #fff;
+}
+
+.section::before,
+.section::after {
+  content: "";
+  position: absolute;
+  inset-inline: 0;
+  height: 88px;
+  pointer-events: none;
+}
+
+.section::before {
+  top: 0;
+  background: linear-gradient(
+    to bottom,
+    #000,
+    rgb(0 0 0 / 55%) 25%,
+    transparent
+  );
+}
+
+.section::after {
+  bottom: 0;
+  background: linear-gradient(
+    to top,
+    var(--color-gray-100, #f3f4f6),
+    transparent
+  );
+}
+
+.backdrop {
+  transform: translate3d(
+    0,
+    calc(var(--scroll-offset) * var(--backdrop-rate)),
+    0
+  );
+  position: absolute;
+  z-index: -1;
+  inset: -100px 25% -180px -25%;
+  background: #a05aab;
+  opacity: 0.5;
+  mask: url("/images/maita/standing/01-default.png") center top / auto 115%
+    no-repeat;
+}
+
+.panel {
+  transform: translate3d(0, calc(var(--scroll-offset) * var(--panel-rate)), 0);
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr 0.95fr;
+  max-width: 1200px;
+  margin: 0 auto;
+  border: 1px solid rgb(255 255 255 / 45%);
+  border-radius: 36px;
+  background:
+    linear-gradient(
+      135deg,
+      rgb(255 255 255 / 12%),
+      transparent 38%,
+      rgb(199 161 215 / 8%)
+    ),
+    rgb(23 19 25 / 76%);
+  -webkit-backdrop-filter: blur(18px) saturate(125%);
+  backdrop-filter: blur(18px) saturate(125%);
+  box-shadow:
+    inset 0 1px 0 rgb(255 255 255 / 35%),
+    inset 0 -1px 0 rgb(255 255 255 / 12%),
+    0 20px 50px rgb(37 19 44 / 16%);
+}
+
+.copy {
+  position: relative;
+  z-index: 1;
+  padding: 48px 0 52px 48px;
+}
+
+.eyebrow {
+  margin-bottom: 24px;
+  font-size: 11px;
+  letter-spacing: 0.22em;
+  color: #e7c4ec;
+}
+
+.heading {
+  margin: 0;
+}
+.logo {
+  width: 100%;
+  height: auto;
+}
+.reading {
+  margin-top: 14px;
+  font-size: 12px;
+  letter-spacing: 0.16em;
+}
+.description {
+  margin-top: 32px;
+  font-size: 16px;
+  line-height: 1.95;
+}
+.description p + p {
+  margin-top: 16px;
+}
+.profile {
+  margin-top: 30px;
+  font-size: 14px;
+  line-height: 1.7;
+}
+.profileRow {
+  display: grid;
+  grid-template-columns: 6em 1fr;
+  gap: 12px;
+  padding: 7px 0;
+  border-top: 1px solid rgb(255 255 255 / 14%);
+}
+.profileRow dt {
+  color: #e5c9e8;
+}
+.profileRow dd {
+  margin: 0;
+}
+.figure {
+  transform: translate3d(
+    0,
+    calc(var(--scroll-offset) * (var(--portrait-rate) - var(--panel-rate))),
+    0
+  );
+  position: relative;
+  align-self: center;
+  margin: 0 -45px 0 -35px;
+}
+.portrait {
+  display: block;
+  width: 100%;
+  height: auto;
+  filter: drop-shadow(3px 0 0 white) drop-shadow(-3px 0 0 white)
+    drop-shadow(0 3px 0 white) drop-shadow(0 -3px 0 white);
+}
+.credit {
+  grid-column: 1 / -1;
+  text-align: right;
+  margin: 0;
+  padding: 80px 36px 28px;
+  font-size: 11px;
+  line-height: 1.6;
+  letter-spacing: 0.08em;
+}
+
+@media (max-width: 899px) {
+  .section {
+    --backdrop-rate: -0.15;
+    --panel-rate: -0.225;
+    --portrait-rate: -0.35;
+    padding: 64px 6%;
+  }
+  .section::before,
+  .section::after {
+    height: 56px;
+  }
+  .backdrop {
+    inset: -30px -30% 0 -90%;
+    mask-size: auto 100%;
+  }
+  .panel {
+    grid-template-columns: 1fr;
+    border-radius: 26px;
+  }
+  .copy {
+    padding: 32px 24px;
+  }
+  .logo {
+    max-width: 540px;
+  }
+  .description {
+    font-size: 15px;
+  }
+  .figure {
+    width: 100%;
+    max-width: 520px;
+    margin: -10px auto 28px;
+  }
+  .credit {
+    padding: 12px 24px 28px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .backdrop,
+  .panel,
+  .figure {
+    transform: none;
+  }
+}
+
+@media (max-width: 399px) {
+  .copy {
+    padding: 28px 18px;
+  }
+  .eyebrow {
+    font-size: 9px;
+  }
+  .profile {
+    font-size: 13px;
+  }
+}

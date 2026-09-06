@@ -1,5 +1,8 @@
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
+import { useEffect } from "react";
 
 import styles from "./maita.module.css";
 
@@ -11,10 +14,82 @@ const VOICE_NAMES = [
 ] as const;
 
 export function MaitaHero() {
+  useEffect(() => {
+    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+    if (window.location.hash || window.scrollY > 8 || reducedMotion.matches)
+      return;
+
+    let frame = 0;
+    // Polaris starts appearing at 1.2 seconds. Ease into the scroll with it.
+    const timer = window.setTimeout(() => {
+      if (
+        document.hidden ||
+        window.location.hash ||
+        reducedMotion.matches ||
+        window.scrollY > 8
+      )
+        return;
+      const target = document.querySelector(
+        '[aria-labelledby="maita-introduction"]',
+      );
+      if (!target) return;
+      window.removeEventListener("scroll", cancel);
+      const startY = window.scrollY;
+      const distance = target.getBoundingClientRect().top;
+      const startedAt = performance.now();
+      const tick = (now: number) => {
+        const progress = Math.min((now - startedAt) / 1800, 1);
+        const eased = (1 - Math.cos(Math.PI * progress)) / 2;
+        window.scrollTo({
+          top: startY + distance * eased,
+          behavior: "instant",
+        });
+        if (progress < 1) frame = window.requestAnimationFrame(tick);
+      };
+      frame = window.requestAnimationFrame(tick);
+    }, 1200);
+    const cancel = () => {
+      window.clearTimeout(timer);
+      window.cancelAnimationFrame(frame);
+    };
+    const cancelOnKey = (event: KeyboardEvent) => {
+      if (
+        [
+          "ArrowDown",
+          "ArrowUp",
+          "PageDown",
+          "PageUp",
+          "Home",
+          "End",
+          " ",
+          "Tab",
+        ].includes(event.key)
+      )
+        cancel();
+    };
+    window.addEventListener("wheel", cancel, { passive: true });
+    window.addEventListener("touchstart", cancel, { passive: true });
+    window.addEventListener("pointerdown", cancel);
+    window.addEventListener("scroll", cancel, { passive: true });
+    window.addEventListener("keydown", cancelOnKey);
+    document.addEventListener("visibilitychange", cancel);
+    reducedMotion.addEventListener("change", cancel);
+    return () => {
+      cancel();
+      window.removeEventListener("wheel", cancel);
+      window.removeEventListener("touchstart", cancel);
+      window.removeEventListener("pointerdown", cancel);
+      window.removeEventListener("scroll", cancel);
+      window.removeEventListener("keydown", cancelOnKey);
+      document.removeEventListener("visibilitychange", cancel);
+      reducedMotion.removeEventListener("change", cancel);
+    };
+  }, []);
+
   return (
-    <section className="relative flex min-h-screen flex-col items-center justify-center bg-black py-25 tracking-display text-white">
+    <section className="relative flex min-h-svh flex-col items-center justify-center bg-black tracking-display text-white">
       <h1 className="sr-only">琵音マイタ</h1>
-      <div className="relative flex min-h-screen max-w-4xl flex-col items-center justify-center py-20 tracking-display text-white">
+      <div className="relative flex min-h-svh max-w-4xl flex-col items-center justify-center py-28 tracking-display text-white">
         <Image
           src="/images/maita/logo.png"
           alt="琵音マイタのロゴ"
@@ -35,7 +110,7 @@ export function MaitaHero() {
           ))}
         </div>
 
-        <p className={`${styles.scrollGuide} absolute bottom-10 text-lg`}>
+        <p className={`${styles.scrollGuide} absolute bottom-24 text-lg`}>
           ↓下にスクロール↓
         </p>
       </div>
