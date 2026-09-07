@@ -64,11 +64,10 @@ export function TermsDownloadDialog({
     }
   }, [isOpen]);
 
-  useEffect(() => {
-    if (!isOpen) {
-      setIsAgreed(false);
-    }
-  }, [isOpen]);
+  function finalizeClose() {
+    setIsAgreed(false);
+    onClose();
+  }
 
   function handleClose() {
     const dialog = dialogRef.current;
@@ -77,7 +76,7 @@ export function TermsDownloadDialog({
       return;
     }
 
-    onClose();
+    finalizeClose();
   }
 
   function handleDownload() {
@@ -103,7 +102,7 @@ export function TermsDownloadDialog({
       onClick={(event) => {
         if (event.target === event.currentTarget) handleClose();
       }}
-      onClose={onClose}
+      onClose={finalizeClose}
     >
       <div className="rounded-lg bg-white p-6">
         <h2 id="download-dialog-title" className="mb-4 text-2xl font-bold">
