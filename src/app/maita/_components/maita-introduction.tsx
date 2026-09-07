@@ -13,7 +13,6 @@ export function MaitaIntroduction() {
       <div className={styles.backdrop} aria-hidden="true" />
       <div className={styles.panel}>
         <div className={styles.copy}>
-          <p className={styles.eyebrow}>ARPEGGIO ORIGINAL CHARACTER</p>
           <h2 id="maita-introduction" className={styles.heading}>
             <Image
               src="/images/maita/logo.png"
@@ -24,7 +23,6 @@ export function MaitaIntroduction() {
               className={styles.logo}
             />
           </h2>
-          <p className={styles.reading}>びおん まいた / Bion Maita</p>
           <div className={styles.description}>
             <p>
               同志社ボカロ研Arpeggioで制作されたオリジナル音源。Arpeggioのメンバーで、髪色はサークルの班の数に合わせている。
