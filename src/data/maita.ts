@@ -21,6 +21,12 @@ export type ProfileItem = Readonly<{
   value: string;
 }>;
 
+export const standingArtDownload = {
+  name: "公式立ち絵素材",
+  downloadUrl:
+    "https://github.com/Arpeggio39/Arpeggio-HP/releases/download/standing-v1/maita-standing.zip",
+} as const;
+
 export const maitaProfile = [
   { label: "名前", value: "琵音 マイタ" },
   { label: "読み", value: "びおん まいた" },
