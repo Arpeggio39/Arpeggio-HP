@@ -2,6 +2,7 @@ import Image from "next/image";
 
 import { maitaProfile } from "@/data/maita";
 
+import { MaitaStandingDownload } from "./maita-standing-download.client";
 import styles from "./maita-introduction.module.css";
 import { MaitaParallax } from "./maita-parallax.client";
 
@@ -48,7 +49,7 @@ export function MaitaIntroduction() {
             className={styles.portrait}
           />
         </figure>
-        <p className={styles.credit}>Illustration by GA-CHAN</p>
+        <MaitaStandingDownload />
       </div>
     </MaitaParallax>
   );

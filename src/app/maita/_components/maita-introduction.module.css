@@ -147,13 +147,129 @@
     drop-shadow(12px 18px 16px rgb(72 37 62 / 18%));
 }
 .credit {
-  grid-column: 1 / -1;
-  text-align: right;
+  position: absolute;
+  right: 36px;
+  bottom: 28px;
+  z-index: 2;
   margin: 0;
-  padding: 80px 36px 28px;
   font-size: 11px;
   line-height: 1.6;
   letter-spacing: 0.08em;
+  text-align: right;
+}
+
+.downloadRow {
+  grid-column: 1 / -1;
+  display: flex;
+  justify-content: center;
+  padding: 72px 36px 56px;
+}
+
+.downloadButtonShell {
+  position: relative;
+  display: inline-flex;
+  overflow: hidden;
+  isolation: isolate;
+  border-radius: 999px;
+  padding: 2px;
+  box-shadow:
+    0 8px 24px rgb(113 57 88 / 14%),
+    0 0 20px rgb(156 67 205 / 18%);
+}
+
+.downloadButtonShell::before {
+  content: "";
+  position: absolute;
+  inset: -120%;
+  background: conic-gradient(
+    from 0deg,
+    #ef3c38,
+    #ff983b,
+    #fff43f,
+    #44cd2b,
+    #2dc4cd,
+    #324b9c,
+    #9b43cd,
+    #ef3c38
+  );
+  animation: downloadRainbowSpin 3s linear infinite;
+}
+
+.downloadButtonShell::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  border-radius: inherit;
+  padding: 2px;
+  pointer-events: none;
+  background: linear-gradient(
+    110deg,
+    transparent 38%,
+    rgb(255 255 255 / 85%) 50%,
+    transparent 62%
+  );
+  background-size: 240% 100%;
+  animation: downloadBorderShimmer 2.4s ease-in-out infinite;
+  -webkit-mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  mask-composite: exclude;
+}
+
+.downloadButton {
+  position: relative;
+  z-index: 1;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  border: none;
+  border-radius: 999px;
+  background: rgb(255 255 255 / 94%);
+  padding: 14px 28px;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 1.4;
+  letter-spacing: 0.04em;
+  color: #713958;
+  transition:
+    background-color 160ms ease,
+    transform 160ms ease;
+}
+
+.downloadButton:hover {
+  background: #fff;
+}
+
+.downloadButton:focus-visible {
+  outline: 2px solid #713958;
+  outline-offset: 3px;
+}
+
+.downloadIcon {
+  width: 22px;
+  height: 22px;
+  flex-shrink: 0;
+}
+
+@keyframes downloadRainbowSpin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes downloadBorderShimmer {
+  0%,
+  100% {
+    background-position: 180% 0;
+  }
+  50% {
+    background-position: -80% 0;
+  }
 }
 
 @media (max-width: 899px) {
@@ -189,8 +305,18 @@
     max-width: 520px;
     margin: -10px auto 28px;
   }
+  .downloadRow {
+    padding: 40px 24px 52px;
+  }
+
   .credit {
-    padding: 12px 24px 28px;
+    right: 24px;
+    bottom: 20px;
+  }
+
+  .downloadButton {
+    padding: 13px 24px;
+    font-size: 15px;
   }
 }
 
@@ -199,6 +325,30 @@
   .panel,
   .figure {
     transform: none;
+  }
+
+  .downloadButtonShell::before,
+  .downloadButtonShell::after {
+    animation: none;
+  }
+
+  .downloadButtonShell::before {
+    transform: none;
+    inset: 0;
+    background: linear-gradient(
+      90deg,
+      #ef3c38,
+      #ff983b,
+      #fff43f,
+      #44cd2b,
+      #2dc4cd,
+      #324b9c,
+      #9b43cd
+    );
+  }
+
+  .downloadButtonShell::after {
+    display: none;
   }
 }
 
