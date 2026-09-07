@@ -10,7 +10,7 @@
   overflow: clip;
   background: #fff;
   padding: 100px 5%;
-  color: #fff;
+  color: #171217;
 }
 
 .section::before,
@@ -50,7 +50,7 @@
   position: absolute;
   z-index: -1;
   inset: -100px 25% -180px -25%;
-  background: #a05aab;
+  background: #a65c87;
   opacity: 0.5;
   mask: url("/images/maita/standing/01-default.png") center top / auto 115%
     no-repeat;
@@ -70,28 +70,21 @@
       135deg,
       rgb(255 255 255 / 12%),
       transparent 38%,
-      rgb(199 161 215 / 8%)
+      rgb(240 186 215 / 12%)
     ),
-    rgb(23 19 25 / 76%);
+    rgb(245 216 232 / 66%);
   -webkit-backdrop-filter: blur(18px) saturate(125%);
   backdrop-filter: blur(18px) saturate(125%);
   box-shadow:
     inset 0 1px 0 rgb(255 255 255 / 35%),
     inset 0 -1px 0 rgb(255 255 255 / 12%),
-    0 20px 50px rgb(37 19 44 / 16%);
+    0 20px 50px rgb(113 57 88 / 12%);
 }
 
 .copy {
   position: relative;
   z-index: 1;
   padding: 48px 0 52px 48px;
-}
-
-.eyebrow {
-  margin-bottom: 24px;
-  font-size: 11px;
-  letter-spacing: 0.22em;
-  color: #e7c4ec;
 }
 
 .heading {
@@ -101,22 +94,24 @@
   width: 100%;
   height: auto;
 }
-.reading {
-  margin-top: 14px;
-  font-size: 12px;
-  letter-spacing: 0.16em;
-}
 .description {
   margin-top: 32px;
-  font-size: 16px;
+  font-size: 18px;
   line-height: 1.95;
+}
+
+.description,
+.profile {
+  font-weight: 600;
+  -webkit-text-stroke: 1.5px #fff;
+  paint-order: stroke fill;
 }
 .description p + p {
   margin-top: 16px;
 }
 .profile {
   margin-top: 30px;
-  font-size: 14px;
+  font-size: 16px;
   line-height: 1.7;
 }
 .profileRow {
@@ -124,10 +119,10 @@
   grid-template-columns: 6em 1fr;
   gap: 12px;
   padding: 7px 0;
-  border-top: 1px solid rgb(255 255 255 / 14%);
+  border-top: 1px solid rgb(113 57 88 / 16%);
 }
 .profileRow dt {
-  color: #e5c9e8;
+  color: inherit;
 }
 .profileRow dd {
   margin: 0;
@@ -147,7 +142,9 @@
   width: 100%;
   height: auto;
   filter: drop-shadow(3px 0 0 white) drop-shadow(-3px 0 0 white)
-    drop-shadow(0 3px 0 white) drop-shadow(0 -3px 0 white);
+    drop-shadow(0 3px 0 white) drop-shadow(0 -3px 0 white)
+    drop-shadow(4px 6px 5px rgb(72 37 62 / 12%))
+    drop-shadow(12px 18px 16px rgb(72 37 62 / 18%));
 }
 .credit {
   grid-column: 1 / -1;
@@ -185,7 +182,7 @@
     max-width: 540px;
   }
   .description {
-    font-size: 15px;
+    font-size: 17px;
   }
   .figure {
     width: 100%;
@@ -209,10 +206,7 @@
   .copy {
     padding: 28px 18px;
   }
-  .eyebrow {
-    font-size: 9px;
-  }
   .profile {
-    font-size: 13px;
+    font-size: 15px;
   }
 }
