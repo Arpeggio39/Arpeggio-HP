@@ -57,7 +57,7 @@ export const coeiroinkGuideIntro = {
   subtitle: "琵音マイタの音声モデルを COEIROINK で使うための手順です。",
   aboutTitle: "COEIROINK とは？",
   aboutBody:
-    "六素(ちくわ)の声をAIが学習し、まるで本人が喋っているかのような流暢さでAIに歌ってもらうことができるソフトウェアです！",
+    "六素(ちくわ)さんの声をAIが学習し、まるで本人が喋っているかのような流暢さでAIに歌ってもらうことができるソフトウェアです！",
   aboutNote:
     "自由に日本語を喋ってもらうことは可能ですが...もちろん悪用ダメゼッタイ...☠️",
   aboutExtra:
