@@ -21,8 +21,8 @@ export type AnniversaryProject = Readonly<{
   action: Readonly<{
     label: string;
     url: string;
-  }>;
-  credits: readonly AnniversaryCredit[];
+  }>|null;
+  credits: readonly AnniversaryCredit[]|null;
 }>;
 
 export const anniversaryProjects = [
@@ -120,7 +120,25 @@ export const anniversaryProjects = [
       },
     ],
   },
-] as const satisfies readonly AnniversaryProject[];
+  {
+    id: "2",
+    date: "2026 9/13",
+    title: "マイタ画集",
+    image: {
+      src: "/images/maita/anniversary/Maita_5th_gashu.webp",
+      alt: "マイタ画集",
+      width: 370,
+      height: 320,},
+      description: [
+        "お祝いイラスト企画でメンバーが書いたものを一つにまとめたもの。",
+        "新入生からOB・OGさんまで沢山の人がマイタのイラストを描いてくれた、",
+        "Arpeggioのイラスト班の英知が詰まった一冊だと思います！",
+        "9/13の声音の宴7次会で初頒布。",
+      ],
+      action: null,
+      credits: null,
+    },
+    ] as const satisfies readonly AnniversaryProject[];
 
 export function getAnniversaryProject(projectId: string) {
   return anniversaryProjects.find((project) => project.id === projectId);
