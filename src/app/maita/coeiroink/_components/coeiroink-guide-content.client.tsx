@@ -202,7 +202,7 @@ export function CoeiroinkGuideContent() {
 
   return (
     <main id="main-content" className="bg-gray-100 text-miku-black">
-      <header className="bg-black px-4 py-16 text-center text-white sm:py-20">
+      <header className="bg-black px-4 pt-28 pb-16 text-center text-white sm:pt-32 sm:pb-20">
         <p className="text-sm tracking-widest text-gray-300 sm:text-base">
           琵音マイタ COEIROINK音源
         </p>
