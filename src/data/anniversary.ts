@@ -138,6 +138,110 @@ export const anniversaryProjects = [
       action: null,
       credits: null,
     },
+    {
+      id: "3",
+      date: "2026 4/26",
+      title: "マイタアルバム",
+      image: {
+        src: "/images/albums/20260426.webp",
+        alt: "マイタアルバム",
+        width: 370,
+        height: 320,
+      },
+      description: [
+        "4/26のM3春2026において",
+        "マイタアルバムを初頒布しました！",
+      ],
+      action: null,
+      credits: [
+        {
+          works: "ほしぞら電波放送部",
+          creator: "あでり犬 feat.MYCOEIROINK:琵音マイタ",
+        },
+        {
+          works: "ノンフィクション",
+          creator: "しゅー feat.琵音マイタPolaris",
+        },
+        {
+          works: "PRISMATIC VOYAGER",
+          creator: "Hanno feat.琵音マイタPolaris",
+        },
+        {
+          works: "Ἀρκαδία",
+          creator: "Med Art 詞：葉城雅樹/はじょみやP 調声：れんれん feat.琵音マイタ",
+        },
+        {
+          works: "イン・マイ・ハート",
+          creator: "nogami feat.琵音マイタPolaris",
+        },
+        {
+          works: "dis-A-star",
+          creator: "衣縫燦志郎 feat.琵音マイタ",
+        },
+        {
+          works: "宵の雨",
+          creator: "みぞれん feat.琵音マイタPolaris",
+        },
+        {
+          works: "SwankyDogs",
+          creator: "ムックP 調声：葉城雅樹/はじょみやP feat.琵音マイタ",
+        },
+        {
+          works: "ハルサメ",
+          creator: "ちゅる feat.琵音マイタ(すべて)",
+        },
+        {
+            works: "クラゲの骨を掬いに行こう",
+            creator: "たとたと feat.琵音マイタCapella(+Antares)",
+        },
+        {
+          works: "よるべのともしび",
+          creator: "みかん 詞：七凌 調声：みたり feat.琵音マイタPolaris",
+        },
+        {
+          works: "由なき郷",
+          creator: "トラギカ feat.琵音マイタ",
+        },
+        {
+          works: "ポラリスと鐘",
+          creator: "Mariner feat.琵音マイタPolaris",
+        },
+        {
+          works: "徒然コンファメーション",
+          creator: "Kito 歌詞：葉城雅樹/はじょみやP 調声：くろ州 feat.琵音マイタPolaris",
+        },
+        {
+          works: "名誉滋賀県民、津田",
+          creator: "えび 調声：たとたと feat.琵音マイタSirius",
+        },
+        {
+          works: "Stela",
+          creator: "Kito 歌詞：葉城雅樹/はじょみやP 調声：くろ州 feat.琵音マイタPolaris",
+        },
+        {
+          works: "ハイウェイラジオ",
+          creator: "52.5℃ feat.MYCOEIROINK:琵音マイタ、VOICEPEAK花隈千冬",
+        },
+      ],
+    },
+    {
+      id: "4",
+      date: "2026 9/9",
+      title: "2Dモデル実装！",
+      image: {
+        src: "/images/maita/anniversary/2Dmodel.webp",
+        alt: "2Dモデル",
+        width: 370,
+        height: 320,
+      },
+      description: [
+        "六素さんが作ってくれたライブ２Dモデル。",
+        "ついにマイタが動いてしゃべりました！",
+        "サークルの広報などで使用してるよ！",
+      ],
+      action: null,
+      credits: null,
+    },
     ] as const satisfies readonly AnniversaryProject[];
 
 export function getAnniversaryProject(projectId: string) {
