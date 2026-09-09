@@ -127,7 +127,7 @@ export function TermsDownloadDialog({
             <Link
               href={`/maita/term/?lang=${language}`}
               target="_blank"
-              className="text-miku-blue underline transition-colors hover:text-miku-pink"
+              className="text-blue-600! underline! underline-offset-2 transition-colors hover:text-blue-800!"
             >
               {copy.agreementLink}
             </Link>
