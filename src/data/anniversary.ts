@@ -123,7 +123,7 @@ export const anniversaryProjects = [
   {
     id: "2",
     date: "2026 9/13",
-    title: "マイタ画集を作成しました！",
+    title: "マイタ画集",
     image: {
       src: "/images/maita/anniversary/Maita_5th_gashu.webp",
       alt: "マイタ画集",
@@ -140,8 +140,8 @@ export const anniversaryProjects = [
     },
     {
       id: "3",
-      date: "2026 4/26",
-      title: "マイタアルバム発表！",
+      date: "2026 9/13",
+      title: "マイタアルバム",
       image: {
         src: "/images/albums/20260426.webp",
         alt: "マイタアルバム",
@@ -226,7 +226,7 @@ export const anniversaryProjects = [
     },
     {
       id: "4",
-      date: "2026 9/9",
+      date: "2026 9/13",
       title: "琵音マイタの2Dモデル実装！",
       image: {
         src: "/images/maita/anniversary/2Dmodel.webp",
@@ -238,6 +238,24 @@ export const anniversaryProjects = [
         "六素さんが作ってくれたライブ２Dモデル。",
         "ついにマイタが動いてしゃべりました！",
         "サークルの広報などで使用してるよ！",
+      ],
+      action: null,
+      credits: null,
+    },
+    {
+      id: "5",
+      date: "2026 9/13",
+      title: "マイタエンブレム",
+      image: {
+        src: "/images/maita/emblem.png",
+        alt: "マイタエンブレム",
+        width: 370,
+        height: 320,
+      },
+      description: [
+      "マイタのMと角（？）の部分を表しています！",
+      "また、横に倒すとBになるデザインにすることと、",
+      "シンプルで見やすくすることを意識していました！",
       ],
       action: null,
       credits: null,
