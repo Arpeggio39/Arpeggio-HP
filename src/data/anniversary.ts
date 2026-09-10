@@ -123,7 +123,7 @@ export const anniversaryProjects = [
   {
     id: "2",
     date: "2026 9/13",
-    title: "マイタ画集",
+    title: "マイタ画集を作成しました！",
     image: {
       src: "/images/maita/anniversary/Maita_5th_gashu.webp",
       alt: "マイタ画集",
@@ -141,7 +141,7 @@ export const anniversaryProjects = [
     {
       id: "3",
       date: "2026 4/26",
-      title: "マイタアルバム",
+      title: "マイタアルバム発表！",
       image: {
         src: "/images/albums/20260426.webp",
         alt: "マイタアルバム",
@@ -227,7 +227,7 @@ export const anniversaryProjects = [
     {
       id: "4",
       date: "2026 9/9",
-      title: "2Dモデル実装！",
+      title: "琵音マイタの2Dモデル実装！",
       image: {
         src: "/images/maita/anniversary/2Dmodel.webp",
         alt: "2Dモデル",
