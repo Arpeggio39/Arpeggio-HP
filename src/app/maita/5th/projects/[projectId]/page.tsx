@@ -66,11 +66,13 @@ export default async function AnniversaryProjectPage({
     notFound();
   }
 
-  const creditMidpoint = Math.ceil(project.credits.length / 2);
+  const credits = project.credits ?? [];
+
+  const creditMidpoint = Math.ceil(credits.length / 2);
   const creditColumns = [
-    project.credits.slice(0, creditMidpoint),
-    project.credits.slice(creditMidpoint),
-  ];
+  credits.slice(0, creditMidpoint),
+  credits.slice(creditMidpoint),
+];
 
   return (
     <div className="relative min-h-screen bg-pink-50">
@@ -113,7 +115,8 @@ export default async function AnniversaryProjectPage({
                     </span>
                   ))}
                 </p>
-                <div className="mb-8 text-center md:text-left">
+                {project.action && (
+                  <div className="mb-8 text-center md:text-left">
                   <a
                     href={project.action.url}
                     target="_blank"
@@ -123,26 +126,29 @@ export default async function AnniversaryProjectPage({
                     {project.action.label}
                   </a>
                 </div>
+                )}
               </div>
             </div>
 
-            <section className="mt-12 rounded-xl bg-gray-50 p-6">
-              <h2 className="mb-4 text-lg font-semibold text-gray-800">
-                クレジット
-              </h2>
-              <div className="grid grid-cols-1 gap-6 text-sm text-gray-700 md:grid-cols-2">
-                {creditColumns.map((credits, columnIndex) => (
-                  <div
-                    key={columnIndex === 0 ? "left" : "right"}
-                    className="space-y-3"
-                  >
-                    {credits.map((credit) => (
-                      <Credit key={credit.works} credit={credit} />
-                    ))}
-                  </div>
-                ))}
-              </div>
-            </section>
+    {project.credits !== null && (
+      <section className="mt-12 rounded-xl bg-gray-50 p-6">
+        <h2 className="mb-4 text-lg font-semibold text-gray-800">
+        クレジット
+        </h2>
+        <div className="grid grid-cols-1 gap-6 text-sm text-gray-700 md:grid-cols-2">
+      {creditColumns.map((columnCredits, columnIndex) => (
+        <div
+          key={columnIndex === 0 ? "left" : "right"}
+          className="space-y-3"
+        >
+          {columnCredits.map((credit) => (
+            <Credit key={credit.works} credit={credit} />
+          ))}
+        </div>
+      ))}
+        </div>
+      </section>
+    )}
 
             <div className="mt-12 text-center">
               <Link

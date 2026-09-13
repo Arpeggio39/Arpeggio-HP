@@ -13,7 +13,7 @@ export const metadata: Metadata = {
   description: "琵音マイタ5周年記念プロジェクトをご紹介します。",
 };
 
-const COMING_SOON_CARDS = ["coming-soon-1", "coming-soon-2"] as const;
+const COMING_SOON_CARDS = ["coming-soon-1"] as const;
 
 export default function FifthAnniversaryPage() {
   return (
