@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 
 import { SiteFooter } from "@/components/layout/site-footer";
 import { SiteHeader } from "@/components/layout/site-header.client";
@@ -21,26 +20,6 @@ export default function MaitaPage() {
       <main id="main-content">
         <MaitaHero />
         <MaitaIntroduction />
-
-        <section
-          className="bg-gray-100 px-6 py-10 sm:px-8 sm:py-12"
-          aria-label="OpenMaitaの紹介"
-        >
-          <Link
-            href="/maita/openmaita/"
-            className="mx-auto flex max-w-4xl flex-wrap items-center justify-between gap-6 rounded-3xl bg-black p-8 text-white! transition-colors hover:bg-[#151316] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-maita-purple sm:p-12"
-          >
-            <div>
-              <p className="mb-2 text-3xl font-semibold tracking-tight">
-                OpenMaita<span className="text-maita-purple">.</span>
-              </p>
-              <p className="text-sm leading-relaxed text-white/70">
-                マイタの声で、つくろう。ナレーション制作からLive2D動画まで。
-              </p>
-            </div>
-            <span className="text-sm text-white/90">詳しく見る →</span>
-          </Link>
-        </section>
 
         <div className="flex flex-col items-center justify-center bg-gray-100 px-4 py-8 tracking-wider text-black sm:px-7 sm:py-10">
           <VoicebankList />

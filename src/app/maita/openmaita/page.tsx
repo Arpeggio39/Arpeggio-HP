@@ -16,6 +16,7 @@ const description =
 export const metadata: Metadata = {
   title,
   description,
+  robots: { index: false, follow: false },
   alternates: { canonical: "/maita/openmaita/" },
   openGraph: {
     title,

@@ -13,7 +13,6 @@ const STATIC_ROUTES = [
   "postfes/",
   "members/",
   "maita/",
-  "maita/openmaita/",
   "maita/term/",
   "maita/5th/",
 ] as const;
