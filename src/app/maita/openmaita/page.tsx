@@ -4,14 +4,14 @@ import Link from "next/link";
 
 import { SiteFooter } from "@/components/layout/site-footer";
 import { SiteHeader } from "@/components/layout/site-header.client";
-import { coeiroinkDownloads } from "@/data/coeiroink-guide";
 
+import { OpenMaitaDownload } from "./download.client";
 import styles from "./page.module.css";
 import { Reveal } from "./reveal.client";
 
-const title = "OpenMaita — マイタの声で、つくろう。";
+const title = "OpenMaita | 琵音マイタの音声・動画作成アプリ";
 const description =
-  "琵音マイタのナレーションをつくるWindowsアプリ、OpenMaita。文章の入力から声の調整、Live2Dの口パク動画の書き出しまで。";
+  "OpenMaitaは、COEIROINKと連携して琵音マイタの音声を作成できるWindowsアプリです。読み上げの調整やWAV保存、モーショントラッキングなしでのLive2D動画の書き出しに対応しています。";
 
 export const metadata: Metadata = {
   title,
@@ -44,19 +44,17 @@ export default function OpenMaitaPage() {
                 <span className={styles.dot}>.</span>
               </h1>
               <p className={styles.tagline}>
-                マイタの声で、
+                マイタの音声と
                 <br />
-                つくろう。
+                動画を作成
               </p>
               <p className={styles.heroDescription}>
-                COEIROINKと連携して、言葉をマイタの声に。
+                COEIROINKと連携して、入力した文章をマイタの声で読み上げます。
                 <br />
-                声も、表情も。あなたの創作にマイタを。
+                音声の調整や保存、Live2D動画の書き出しができます。
               </p>
               <div className={styles.actions}>
-                <a href="#download" className={styles.primary}>
-                  ダウンロード <span aria-hidden="true">↓</span>
-                </a>
+                <OpenMaitaDownload label="最新版をダウンロード" />
                 <a href="#features" className={styles.textLink}>
                   できることを見る <span aria-hidden="true">↗</span>
                 </a>
@@ -86,12 +84,12 @@ export default function OpenMaitaPage() {
           <Reveal>
             <div className={styles.sectionHeading}>
               <div>
-                <h2 id="features-title">言葉に、マイタらしさを。</h2>
+                <h2 id="features-title">音声の作成・調整</h2>
               </div>
               <p>
-                台本を書いて、聞いて、少し整える。
+                文章を入力して、読み上げを確認。
                 <br />
-                思い描いた話し方を、ひとつの画面で。
+                同じ画面で話し方を調整できます。
               </p>
             </div>
             <figure className={styles.appFigure}>
@@ -112,23 +110,23 @@ export default function OpenMaitaPage() {
             <div className={styles.features}>
               <div>
                 <span className={styles.number}>01</span>
-                <h3>書いて、聞く。</h3>
+                <h3>文章の入力・再生</h3>
                 <p>
-                  台本を入力して、そのまま再生。選んだ部分だけ聞き直せるから、長い文章も少しずつ仕上げられます。
+                  入力した文章を読み上げます。選択した部分だけを再生して、読み方を確認できます。
                 </p>
               </div>
               <div>
                 <span className={styles.number}>02</span>
-                <h3>声のニュアンスを整える。</h3>
+                <h3>読み上げの調整</h3>
                 <p>
-                  話す速さ、声の高さ、イントネーション。言葉ごとの調整で、届けたい雰囲気に近づけます。
+                  話す速さ、声の高さ、イントネーションを調整できます。言葉ごとの調整にも対応しています。
                 </p>
               </div>
               <div>
                 <span className={styles.number}>03</span>
-                <h3>作品へ、書き出す。</h3>
+                <h3>WAVで保存</h3>
                 <p>
-                  全文をまとめて、または区切りごとにWAVで保存。動画のナレーションや、作品のセリフに。
+                  全文をまとめて、または区切りごとにWAVで保存できます。動画のナレーションやセリフに使えます。
                 </p>
               </div>
             </div>
@@ -158,19 +156,15 @@ export default function OpenMaitaPage() {
             </div>
             <div className={styles.liveCopy}>
               <span className={styles.badge}>Live2D連携</span>
-              <h2 id="live2d-title">
-                声に合わせて、
-                <br />
-                マイタも動く。
-              </h2>
+              <h2 id="live2d-title">Live2D動画の作成</h2>
               <p>
-                ナレーションができたら、動くマイタも一緒に。
+                モーショントラッキングなしで、マイタのLive2Dモデルを動かせます。
                 <br />
-                音声に合わせた口パクと、自然な動きを付けた動画を書き出せます。
+                文章と音声に合わせて口パクや身振りを自動で付け、音声付きの動画を書き出せます。
               </p>
               <ul className={styles.liveList}>
-                <li>音声と一緒に、音声付きMP4を保存</li>
-                <li>グリーンバックで、編集ソフトでの合成も</li>
+                <li>音声付きMP4で保存</li>
+                <li>グリーンバックで書き出し、編集ソフトで合成可能</li>
                 <li>収録したモーションの読み込みにも対応</li>
               </ul>
             </div>
@@ -183,18 +177,11 @@ export default function OpenMaitaPage() {
           aria-labelledby="download-title"
         >
           <Reveal>
-            <h2 id="download-title">次の作品を、マイタと。</h2>
+            <h2 id="download-title">ダウンロード</h2>
             <p className={styles.downloadIntro}>
-              あなたの物語に、マイタの声と動きを。
+              最新版のWindows用インストーラーをダウンロードできます。
             </p>
-            <a
-              href={coeiroinkDownloads.releasesPage + "/latest"}
-              target="_blank"
-              rel="noopener noreferrer"
-              className={styles.primary}
-            >
-              OpenMaitaをダウンロード <span aria-hidden="true">↗</span>
-            </a>
+            <OpenMaitaDownload label="OpenMaitaをダウンロード" />
             <p className={styles.downloadNote}>Windows向け</p>
             <div className={styles.downloadLinks}>
               <Link href="/maita/coeiroink/">
