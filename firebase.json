@@ -35,6 +35,19 @@
           ]
         },
         {
+          "source": "/maita/openmaita{,/**}",
+          "headers": [
+            {
+              "key": "Content-Security-Policy",
+              "value": "default-src 'self'; img-src 'self' data:; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; font-src 'self' data:; connect-src 'self' https://api.github.com/repos/Arpeggio39/MaitaCOEIROINK/releases/latest; base-uri 'self'; form-action 'self'; frame-ancestors 'none'; object-src 'none';"
+            },
+            {
+              "key": "Cache-Control",
+              "value": "no-cache, max-age=0, must-revalidate"
+            }
+          ]
+        },
+        {
           "source": "/_next/static/**",
           "headers": [
             {
