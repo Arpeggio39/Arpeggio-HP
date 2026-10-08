@@ -30,7 +30,21 @@
 .heroCopy {
   position: relative;
   z-index: 2;
-  animation: arrive 900ms ease-out both;
+}
+.heroCopy > * {
+  animation: arrive 650ms ease-out both;
+}
+.heroCopy > :nth-child(2) {
+  animation-delay: 80ms;
+}
+.heroCopy > :nth-child(3) {
+  animation-delay: 160ms;
+}
+.heroCopy > :nth-child(4) {
+  animation-delay: 240ms;
+}
+.heroCopy > :nth-child(5) {
+  animation-delay: 320ms;
 }
 .eyebrow {
   margin-bottom: 28px;
@@ -95,6 +109,19 @@
   background: #9b509d;
   transform: translateY(-3px);
 }
+.primary > span,
+.textLink > span,
+.downloadLinks span {
+  display: inline-block;
+  transition: transform 180ms ease-out;
+}
+.primary:hover > span {
+  transform: translateY(3px);
+}
+.textLink:hover > span,
+.downloadLinks a:hover span {
+  transform: translate(2px, -2px);
+}
 .primary[aria-disabled="true"] {
   cursor: wait;
   opacity: 0.7;
@@ -129,7 +156,7 @@
   align-items: center;
   justify-content: center;
   min-width: 0;
-  animation: arrive 1100ms 150ms ease-out both;
+  animation: arrive 800ms 160ms ease-out both;
 }
 .artRing {
   position: absolute;
@@ -395,12 +422,19 @@
   opacity: 1;
   transform: none;
   transition:
-    opacity 800ms ease,
-    transform 800ms ease;
+    opacity 600ms ease-out,
+    transform 600ms ease-out;
+}
+.revealDelayShort {
+  transition-delay: 100ms;
+}
+.revealDelayLong {
+  transition-delay: 200ms;
 }
 .pending {
   opacity: 0;
   transform: translateY(24px);
+  transition: none;
 }
 @keyframes arrive {
   from {
@@ -514,6 +548,10 @@
   .features > div {
     padding-top: 18px;
   }
+  .revealDelayShort,
+  .revealDelayLong {
+    transition-delay: 0ms;
+  }
   .features h3 {
     display: inline;
     margin-left: 15px;
@@ -548,7 +586,7 @@
   }
 }
 @media (prefers-reduced-motion: reduce) {
-  .heroCopy,
+  .heroCopy > *,
   .heroArt {
     animation: none;
   }
@@ -558,7 +596,16 @@
     transform: none;
     transition: none;
   }
-  .primary:hover {
+  .primary,
+  .primary > span,
+  .textLink > span,
+  .downloadLinks span {
+    transition: none;
+  }
+  .primary:hover,
+  .primary:hover > span,
+  .textLink:hover > span,
+  .downloadLinks a:hover span {
     transform: none;
   }
 }

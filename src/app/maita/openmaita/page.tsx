@@ -81,17 +81,17 @@ export default function OpenMaitaPage() {
           className={styles.section}
           aria-labelledby="features-title"
         >
-          <Reveal>
-            <div className={styles.sectionHeading}>
-              <div>
-                <h2 id="features-title">音声の作成・調整</h2>
-              </div>
-              <p>
-                文章を入力して、読み上げを確認。
-                <br />
-                同じ画面で話し方を調整できます。
-              </p>
+          <Reveal className={styles.sectionHeading}>
+            <div>
+              <h2 id="features-title">音声の作成・調整</h2>
             </div>
+            <p>
+              文章を入力して、読み上げを確認。
+              <br />
+              同じ画面で話し方を調整できます。
+            </p>
+          </Reveal>
+          <Reveal>
             <figure className={styles.appFigure}>
               <div className={styles.windowBar}>
                 <span aria-hidden="true">● ● ●</span>
@@ -107,35 +107,35 @@ export default function OpenMaitaPage() {
                 className={styles.appImage}
               />
             </figure>
-            <div className={styles.features}>
-              <div>
-                <span className={styles.number}>01</span>
-                <h3>文章の入力・再生</h3>
-                <p>
-                  入力した文章を読み上げます。選択した部分だけを再生して、読み方を確認できます。
-                </p>
-              </div>
-              <div>
-                <span className={styles.number}>02</span>
-                <h3>読み上げの調整</h3>
-                <p>
-                  話す速さ、声の高さ、イントネーションを調整できます。言葉ごとの調整にも対応しています。
-                </p>
-              </div>
-              <div>
-                <span className={styles.number}>03</span>
-                <h3>WAVで保存</h3>
-                <p>
-                  全文をまとめて、または区切りごとにWAVで保存できます。動画のナレーションやセリフに使えます。
-                </p>
-              </div>
-            </div>
           </Reveal>
+          <div className={styles.features}>
+            <Reveal>
+              <span className={styles.number}>01</span>
+              <h3>文章の入力・再生</h3>
+              <p>
+                入力した文章を読み上げます。選択した部分だけを再生して、読み方を確認できます。
+              </p>
+            </Reveal>
+            <Reveal className={styles.revealDelayShort}>
+              <span className={styles.number}>02</span>
+              <h3>読み上げの調整</h3>
+              <p>
+                話す速さ、声の高さ、イントネーションを調整できます。言葉ごとの調整にも対応しています。
+              </p>
+            </Reveal>
+            <Reveal className={styles.revealDelayLong}>
+              <span className={styles.number}>03</span>
+              <h3>WAVで保存</h3>
+              <p>
+                全文をまとめて、または区切りごとにWAVで保存できます。動画のナレーションやセリフに使えます。
+              </p>
+            </Reveal>
+          </div>
         </section>
 
         <section className={styles.liveSection} aria-labelledby="live2d-title">
-          <Reveal className={styles.liveInner}>
-            <div className={styles.liveVisual}>
+          <div className={styles.liveInner}>
+            <Reveal className={styles.liveVisual}>
               <video
                 controls
                 playsInline
@@ -153,8 +153,8 @@ export default function OpenMaitaPage() {
                   type="video/mp4"
                 />
               </video>
-            </div>
-            <div className={styles.liveCopy}>
+            </Reveal>
+            <Reveal className={`${styles.liveCopy} ${styles.revealDelayShort}`}>
               <span className={styles.badge}>Live2D連携</span>
               <h2 id="live2d-title">Live2D動画の作成</h2>
               <p>
@@ -167,8 +167,8 @@ export default function OpenMaitaPage() {
                 <li>グリーンバックで書き出し、編集ソフトで合成可能</li>
                 <li>収録したモーションの読み込みにも対応</li>
               </ul>
-            </div>
-          </Reveal>
+            </Reveal>
+          </div>
         </section>
 
         <section

@@ -14,24 +14,37 @@ export function Reveal({
   const ref = useRef<HTMLDivElement>(null);
   useEffect(() => {
     const element = ref.current;
+    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
     if (
       !element ||
-      window.matchMedia("(prefers-reduced-motion: reduce)").matches ||
+      reducedMotion.matches ||
       !("IntersectionObserver" in window)
     )
       return;
+
+    // Keep content already on screen visible, including direct anchor visits.
+    if (element.getBoundingClientRect().top < window.innerHeight - 24) return;
+
+    function show() {
+      element?.classList.remove(styles.pending);
+      observer.disconnect();
+    }
+
     const observer = new IntersectionObserver(
       ([entry]) => {
-        if (entry.isIntersecting) {
-          element.classList.remove(styles.pending);
-          observer.disconnect();
-        }
+        if (entry.isIntersecting) show();
       },
-      { threshold: 0.08 },
+      { threshold: 0, rootMargin: "0px 0px -24px 0px" },
     );
     element.classList.add(styles.pending);
     observer.observe(element);
-    return () => observer.disconnect();
+    element.addEventListener("focusin", show);
+    reducedMotion.addEventListener("change", show);
+    return () => {
+      show();
+      element.removeEventListener("focusin", show);
+      reducedMotion.removeEventListener("change", show);
+    };
   }, []);
   return (
     <div ref={ref} className={`${styles.reveal} ${className}`}>
