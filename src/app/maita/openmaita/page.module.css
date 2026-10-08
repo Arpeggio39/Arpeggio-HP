@@ -95,6 +95,20 @@
   background: #9b509d;
   transform: translateY(-3px);
 }
+.primary[aria-disabled="true"] {
+  cursor: wait;
+  opacity: 0.7;
+}
+.downloadError {
+  flex-basis: 100%;
+  margin-top: 16px;
+  font-size: 13px;
+  line-height: 1.8;
+}
+.downloadError a {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
 .textLink {
   font-size: 12px;
   color: #eee3ef;
