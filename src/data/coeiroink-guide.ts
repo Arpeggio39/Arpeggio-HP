@@ -31,8 +31,7 @@ export const coeiroinkDownloads = {
   coeiroinkOfficial: "https://coeiroink.com/download",
   voicePack:
     "https://github.com/Arpeggio39/MaitaCOEIROINK/releases/latest/download/bionmaita-1.0.0.zip",
-  openMaita:
-    "https://github.com/Arpeggio39/MaitaCOEIROINK/releases/latest/download/OpenMaita-Setup-1.8.0.exe",
+  openMaita: "/maita/openmaita/#download",
   releasesPage: "https://github.com/Arpeggio39/MaitaCOEIROINK/releases",
 } as const;
 
@@ -103,9 +102,7 @@ export function getDownloadItems(
         "COEIROINK でマイタのナレーションを、もっと便利に・簡単に作れるようにした Windows 用アプリです。",
       href: coeiroinkDownloads.openMaita,
       external: false,
-      buttonLabel: "ダウンロード",
-      note: "最新版はダウンロードページでも確認できます。",
-      tracksDownload: true,
+      buttonLabel: "ダウンロードページへ",
     });
   }
 
